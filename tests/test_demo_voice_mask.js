@@ -523,6 +523,17 @@ if (players.length !== 2 || players[0].slot !== 3 || players[0].team !== "TERROR
 	throw new Error("demo player discovery/fallback failed: " + JSON.stringify(players));
 }
 
+context.GameStateAPI.GetPlayerName = function (xuid) {
+	return xuid === "101" ? "<span class='decorated-player-name__clan-tag'>TAG</span> <span class='decorated-player-name'>A&amp;B</span>" : "";
+};
+testPlayerSources[1].name = "<span class='decorated-player-name'>Fallback &lt;Name&gt;</span>";
+var decoratedPlayers = context.SwiftDemoVoice.ReadPlayersForTest();
+if (decoratedPlayers[0].name !== "TAG A&B" || decoratedPlayers[1].name !== "Fallback <Name>") {
+	throw new Error("decorated Demo names must become readable plain text: " + JSON.stringify(decoratedPlayers));
+}
+context.GameStateAPI.GetPlayerName = function (xuid) { return xuid === "101" ? "Primary Name" : ""; };
+testPlayerSources[1].name = "Fallback Name";
+
 var initialDemoPoll = takeScheduledCallback(0.25);
 if (!initialDemoPoll) throw new Error("Demo voice startup poll was not scheduled");
 initialDemoPoll();

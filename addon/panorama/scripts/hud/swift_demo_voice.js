@@ -766,6 +766,7 @@ var SwiftDemoVoice = (function () {
 				$.Msg("[SwiftDemoVoice] player API failed for " + xuid + ": " + error);
 			}
 			if (!name && source.name) name = String(source.name);
+			name = _PlainPlayerName(name);
 			if (!team && data.teams && source.team !== undefined && data.teams[source.team]) {
 				team = data.teams[source.team].name || "";
 			}
@@ -788,6 +789,19 @@ var SwiftDemoVoice = (function () {
 			return teamDelta !== 0 ? teamDelta : a.slot - b.slot;
 		});
 		return result;
+	}
+
+	function _PlainPlayerName(value) {
+		var name = String(value || "");
+		// GameStateAPI can return a decorated HTML name; player rows and commands need plain text.
+		if (/<span\b/i.test(name)) {
+			name = name.replace(/<\/?span\b[^>]*>/gi, "")
+				.replace(/&(?:amp|lt|gt|quot|apos|#39);/gi, function (entity) {
+					var decoded = { "&amp;": "&", "&lt;": "<", "&gt;": ">", "&quot;": '"', "&apos;": "'", "&#39;": "'" };
+					return decoded[entity.toLowerCase()] || entity;
+				});
+		}
+		return name;
 	}
 
 	function _SetRowSelected(row, selected) {
