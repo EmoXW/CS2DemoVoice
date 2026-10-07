@@ -285,7 +285,7 @@ UpdateInfo UpdateService::parseLatestRelease(const QByteArray &releaseJson, cons
             QStringLiteral(R"(^CS2DemoVoice-v([0-9]+\.[0-9]+\.[0-9]+)-win64\.zip$)"),
             QRegularExpression::CaseInsensitiveOption);
         const QRegularExpression menuPattern(
-            QStringLiteral(R"(^swift_demo_menu_override-v([0-9]+\.[0-9]+\.[0-9]+)\.vpk$)"),
+            QStringLiteral(R"(^(?:cs2demovoice_demoui|swift_demo_menu_override)-v([0-9]+\.[0-9]+\.[0-9]+)\.vpk$)"),
             QRegularExpression::CaseInsensitiveOption);
         for (const QJsonValue &value : release.value(QStringLiteral("assets")).toArray()) {
             const QJsonObject asset = value.toObject();

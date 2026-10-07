@@ -192,7 +192,7 @@ swift_demo_voice_session.vpk
 
 ```text
 Game csgo/overrides/swift_demo_voice_session.vpk
-Game csgo/overrides/swift_demo_menu_override.vpk
+Game csgo/overrides/cs2demovoice_demoui.vpk
 Game csgo
 ```
 
@@ -227,7 +227,7 @@ Game csgo
 启动器只管理自己拥有的资源：
 
 - `swift_demo_voice_session.vpk`；
-- `swift_demo_menu_override.vpk`；
+- `cs2demovoice_demoui.vpk`；
 - CS2DemoVoice 专用暂存与配置；
 - 旧版本遗留的 `swift_demo_voice_session` 松散目录。
 

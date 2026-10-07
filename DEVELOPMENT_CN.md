@@ -10,7 +10,7 @@ CS2DemoVoice 由三个协作组件组成：
 
 1. Panorama override：扩展 Valve 原生 `huddemocontroller`，加入已录制语音控制、解析后的说话状态、经过核验的 POV 切换和回合导航。
 2. C++17/Qt 6 Widgets 启动器：检测 CS2，接收 `.dem`、`.zip` 和 `.dem.zst` 文件，准备独立回放会话，使用 `-insecure` 启动 CS2，并在结束后恢复本项目产生的修改。
-3. Rust `swift-demo-voice-indexer` 辅助程序：流式解压 Zstandard Demo，只读 `SvcVoiceData`，输出紧凑的 tick/槽位 Panorama 数据脚本，将其编译为最小 Source 2 `vjs` Version 4 资源，并直接写入每个 Demo 的 session VPK；不会重写源 Demo。
+3. Rust `cs2demovoice-voice-indexer` 辅助程序：流式解压 Zstandard Demo，只读 `SvcVoiceData`，输出紧凑的 tick/槽位 Panorama 数据脚本，将其编译为最小 Source 2 `vjs` Version 4 资源，并直接写入每个 Demo 的 session VPK；不会重写源 Demo。
 
 ZIP 读取功能由仓库内置的 miniz 源码直接编译进启动器。程序会在进程内枚举压缩包，并且只流式写出玩家选择的 `.dem`；发布包无需携带或调用外部解压程序。
 
@@ -67,7 +67,7 @@ cargo test --locked --manifest-path .\tools\voice-indexer\Cargo.toml
 输出：
 
 ```text
-dist\swift_demo_menu_override.vpk
+dist\cs2demovoice_demoui.vpk
 ```
 
 其他生命周期操作包括 `Compile`、`Pack`、`Install` 和 `Uninstall`。`Install`、`Uninstall` 与 `-InstallLocalOverride` 会修改本机 CS2 安装，只有明确需要时才应使用。安装、更新或卸载编译后的 Panorama 资源后，需要完整重启 CS2。
@@ -109,7 +109,7 @@ launcher\package\CS2DemoVoice-v<版本号>\CS2DemoVoice.exe
 launcher\package\CS2DemoVoice-v<版本号>-win64.zip
 ```
 
-打包过程使用 `windeployqt`。产物必须包含启动器、`swift-demo-voice-indexer.exe`、Qt 运行库、`platforms\qwindows.dll`、DemoUI VPK、翻译、README、项目许可证、第三方说明和依赖许可文本。玩家端不携带也不依赖 Valve ResourceCompiler、Workshop Tools DLC 或 VPKEdit。本地端到端测试请运行展开版本目录中的 EXE，并保持整个目录结构完整。
+打包过程使用 `windeployqt`。产物必须包含启动器、`cs2demovoice-voice-indexer.exe`、Qt 运行库、`platforms\qwindows.dll`、DemoUI VPK、翻译、README、项目许可证、第三方说明和依赖许可文本。玩家端不携带也不依赖 Valve ResourceCompiler、Workshop Tools DLC 或 VPKEdit。本地端到端测试请运行展开版本目录中的 EXE，并保持整个目录结构完整。
 
 启动器流程、国际化、ZIP 防护与清理边界详见[启动器指南](launcher/README_CN.md)。
 
@@ -153,7 +153,7 @@ GitHub Actions 会在 Windows Server 2022 上运行可移植的 Panorama、Rust 
 - CS2 与 Dota 2 插件的加载约定不同。本项目使用 CS2 会主动加载的 `addon/resource/platform_english.txt` 和 `platform_schinese.txt`，构建后对应 VPK 内的 `resource/platform_<language>.txt`；缺少对应语言时由本地化系统回退为英文。
 - XML 中的静态用户文案使用 `#SwiftDemoVoice_*` Token；JavaScript 动态文案必须通过 `_Localize()`（内部调用 `$.Localize`）处理，不能直接把 Token 赋给 `.text`。
 - 动态数字和文本使用 Panorama dialog variable，例如 `{d:count}` 和 `{s:player}`。新增或删除 Token 时必须同时更新两份语言目录，测试会检查引用、缺失项和未使用项。
-- 语言文件属于运行时 `game` 资源，不由 ResourceCompiler 编译。构建脚本会以带 BOM 的 UTF-8 原始文本复制到 `game/csgo_addons/swift_demo_menu_override/resource/`，随后打进 VPK。
+- 语言文件属于运行时 `game` 资源，不由 ResourceCompiler 编译。构建脚本会以带 BOM 的 UTF-8 原始文本复制到 `game/csgo_addons/cs2demovoice_demoui/resource/`，随后打进 VPK。
 - DemoUI 不提供独立语言开关，而是自动跟随 CS2 界面语言；测试语言变更时需要完整重启 CS2。
 
 ## 版本与本地 Release
@@ -179,7 +179,7 @@ Release 源码包从 `HEAD` 生成，因此创建候选版本前 Git 工作区�
 ```text
 release\v<版本号>\CS2DemoVoice-v<版本号>-win64.zip
 release\v<版本号>\CS2DemoVoice-v<版本号>-source.zip
-release\v<版本号>\swift_demo_menu_override-v<版本号>.vpk
+release\v<版本号>\cs2demovoice_demoui-v<版本号>.vpk
 release\v<版本号>\update-manifest.json
 release\v<版本号>\SHA256SUMS.txt
 ```
@@ -254,3 +254,7 @@ Get-Content .\SHA256SUMS.txt
 - Valve 游戏资源、名称和商标不会因本仓库的 MIT License 而重新授权。
 
 依赖或分发方式变化时，请同步更新 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 和 [launcher/THIRD_PARTY_NOTICES.txt](launcher/THIRD_PARTY_NOTICES.txt)。
+
+## 产物命名兼容性
+
+公开安装包使用 `cs2demovoice_demoui.vpk` 和 `cs2demovoice-voice-indexer.exe`。启动器迁移旧 VPK 的精确 SearchPath，并在清理时处理新旧两个文件名。内部会话路径保持稳定，以兼容中断后的会话恢复。上游作者归属和许可证保持不变。

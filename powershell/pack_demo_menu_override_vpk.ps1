@@ -1,7 +1,7 @@
 param(
 	[string]$ProjectRoot = "",
 	[string]$Cs2Root = "F:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive",
-	[string]$AddonName = "swift_demo_menu_override",
+	[string]$AddonName = "cs2demovoice_demoui",
 	[string]$VpkEditCli = "F:\cs2dev\SkinTools\VPKEdit-Windows-Standalone-msvc-Release\vpkeditcli.exe"
 )
 

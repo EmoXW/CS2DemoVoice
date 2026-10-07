@@ -56,7 +56,7 @@ Release 通过 `update-manifest.json` 分别记录启动器和 DemoUI 版本。�
   -SkipVpkCheck
 ```
 
-脚本会测试/编译 `swift-demo-voice-indexer.exe`、配置 CMake、编译启动器和翻译，并运行 CTest。`-SkipVpkCheck` 只适用于非打包构建，它不会执行 `windeployqt`；因此 `launcher\build\Release\CS2DemoVoice.exe` 依赖 Qt 开发环境，不应直接双击运行。出现缺少 `Qt6Gui.dll` 的提示，通常就是误用了裸编译目录。
+脚本会测试/编译 `cs2demovoice-voice-indexer.exe`、配置 CMake、编译启动器和翻译，并运行 CTest。`-SkipVpkCheck` 只适用于非打包构建，它不会执行 `windeployqt`；因此 `launcher\build\Release\CS2DemoVoice.exe` 依赖 Qt 开发环境，不应直接双击运行。出现缺少 `Qt6Gui.dll` 的提示，通常就是误用了裸编译目录。
 
 ### 生成可运行包
 
@@ -77,13 +77,13 @@ launcher\package\CS2DemoVoice-v<版本号>\CS2DemoVoice.exe
 launcher\package\CS2DemoVoice-v<版本号>-win64.zip
 ```
 
-本地端到端测试请运行展开版本目录中的 EXE。打包步骤会通过 `windeployqt` 收集 `Qt6Core.dll`、`Qt6Gui.dll`、`Qt6Network.dll`、`Qt6Widgets.dll`、Windows TLS 后端和 `platforms\qwindows.dll`，但会明确排除独立的 VC++ Redistributable 安装程序，以控制发布 ZIP 的体积。`CS2DemoVoice.exe`、`swift-demo-voice-indexer.exe`、DLL/插件、翻译和 `swift_demo_menu_override.vpk` 必须保持在同一完整目录结构中。玩家电脑无需安装 Workshop Tools DLC、`resourcecompiler.exe` 或 VPKEdit。
+本地端到端测试请运行展开版本目录中的 EXE。打包步骤会通过 `windeployqt` 收集 `Qt6Core.dll`、`Qt6Gui.dll`、`Qt6Network.dll`、`Qt6Widgets.dll`、Windows TLS 后端和 `platforms\qwindows.dll`，但会明确排除独立的 VC++ Redistributable 安装程序，以控制发布 ZIP 的体积。`CS2DemoVoice.exe`、`cs2demovoice-voice-indexer.exe`、DLL/插件、翻译和 `cs2demovoice_demoui.vpk` 必须保持在同一完整目录结构中。玩家电脑无需安装 Workshop Tools DLC、`resourcecompiler.exe` 或 VPKEdit。
 
 仓库根目录的 `release.ps1` 用于已经提交的 Release 候选版本，而不是日常开发测试。由于源码包从 `HEAD` 生成，只要 Git 工作区不干净，它就会拒绝继续。
 
 ZIP 支持由项目内置的 miniz 3.1.2 源码直接编译进 `CS2DemoVoice.exe`，用户不需要安装 7-Zip、调用 PowerShell 解压或携带其他可执行程序。发布包会包含 `licenses/miniz-MIT.txt`。
 
-Zstandard 支持通过 `zstd-rs` 静态编译进 `swift-demo-voice-indexer.exe`，用户不需要安装 `zstd.exe` 或运行库 DLL。发布包会包含对应的 MIT 与 BSD-3-Clause 许可证文本。
+Zstandard 支持通过 `zstd-rs` 静态编译进 `cs2demovoice-voice-indexer.exe`，用户不需要安装 `zstd.exe` 或运行库 DLL。发布包会包含对应的 MIT 与 BSD-3-Clause 许可证文本。
 
 ## 国际化与字体
 

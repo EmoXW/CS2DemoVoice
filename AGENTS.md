@@ -13,6 +13,8 @@ The project does not require SwiftlyS2, a server plugin, a Workshop item, or a r
 
 The launcher must never imply that an `-insecure` session is suitable for matchmaking. It does not change permanent Steam launch options.
 
+Public artifacts use `cs2demovoice_demoui.vpk` and `cs2demovoice-voice-indexer.exe`. The launcher recognizes and removes the exact legacy `swift_demo_menu_override.vpk` SearchPath/file during session recovery; internal session paths stay stable for interrupted-session compatibility. Release asset parsing supports both VPK names. Preserve upstream SwiftDemoUIPro attribution and licenses.
+
 ## Non-Negotiable Safety Invariants
 
 - Never launch the Demo workflow while CS2 is already running. `-insecure` must be applied when the launcher starts a new process.
@@ -153,7 +155,7 @@ This test covers mask generation, player discovery/status behavior, POV commands
 Output:
 
 ```text
-dist\swift_demo_menu_override.vpk
+dist\cs2demovoice_demoui.vpk
 ```
 
 Available lifecycle actions are `Build`, `Compile`, `Pack`, `Install`, and `Uninstall`. Prefer `Build` for a normal artifact build. `Install`, `Uninstall`, and `-InstallLocalOverride` modify the local CS2 installation and require explicit user intent.
@@ -250,7 +252,7 @@ This runs both test suites, rebuilds the VPK, builds/tests/packages the launcher
 ```text
 release\v<version>\CS2DemoVoice-v<version>-win64.zip
 release\v<version>\CS2DemoVoice-v<version>-source.zip
-release\v<version>\swift_demo_menu_override-v<version>.vpk
+release\v<version>\cs2demovoice_demoui-v<version>.vpk
 release\v<version>\update-manifest.json
 release\v<version>\SHA256SUMS.txt
 ```

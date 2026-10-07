@@ -10,7 +10,7 @@ CS2DemoVoice has three cooperating components:
 
 1. A Panorama override that extends Valve's native `huddemocontroller` with recorded-voice controls, parsed speaker status, validated POV switching, and round navigation.
 2. A C++17/Qt 6 Widgets launcher that discovers CS2, accepts `.dem`, `.zip`, and `.dem.zst` files, stages an isolated playback session, starts CS2 with `-insecure`, and restores project-owned changes afterward.
-3. A Rust `swift-demo-voice-indexer` sidecar that stream-decompresses Zstandard Demos, reads `SvcVoiceData`, emits a compact tick/slot Panorama data script, compiles it into a minimal Source 2 `vjs` Version 4 resource, and writes the per-Demo session VPK without rewriting the source Demo.
+3. A Rust `cs2demovoice-voice-indexer` sidecar that stream-decompresses Zstandard Demos, reads `SvcVoiceData`, emits a compact tick/slot Panorama data script, compiles it into a minimal Source 2 `vjs` Version 4 resource, and writes the per-Demo session VPK without rewriting the source Demo.
 
 ZIP reading is compiled into the launcher from the vendored miniz source. It enumerates archive entries in process and streams only the selected `.dem`; no external extraction executable is bundled or required.
 
@@ -67,7 +67,7 @@ cargo test --locked --manifest-path .\tools\voice-indexer\Cargo.toml
 Output:
 
 ```text
-dist\swift_demo_menu_override.vpk
+dist\cs2demovoice_demoui.vpk
 ```
 
 Other lifecycle actions are `Compile`, `Pack`, `Install`, and `Uninstall`. `Install`, `Uninstall`, and `-InstallLocalOverride` modify the local CS2 installation; use them only when that is explicitly intended. Fully restart CS2 after installing, updating, or uninstalling compiled Panorama resources.
@@ -109,7 +109,7 @@ launcher\package\CS2DemoVoice-v<version>\CS2DemoVoice.exe
 launcher\package\CS2DemoVoice-v<version>-win64.zip
 ```
 
-Packaging uses `windeployqt`. The output must contain the launcher, `swift-demo-voice-indexer.exe`, Qt runtime DLLs, `platforms\qwindows.dll`, the DemoUI VPK, translations, README files, the project license, third-party notices, and dependency license texts. The player package does not contain or require Valve's ResourceCompiler, the Workshop Tools DLC, or VPKEdit. For end-to-end testing, run the EXE from the unpacked version directory and keep the directory intact.
+Packaging uses `windeployqt`. The output must contain the launcher, `cs2demovoice-voice-indexer.exe`, Qt runtime DLLs, `platforms\qwindows.dll`, the DemoUI VPK, translations, README files, the project license, third-party notices, and dependency license texts. The player package does not contain or require Valve's ResourceCompiler, the Workshop Tools DLC, or VPKEdit. For end-to-end testing, run the EXE from the unpacked version directory and keep the directory intact.
 
 See the [Launcher Guide](launcher/README.md) for its workflow, localization, ZIP protections, and cleanup boundaries.
 
@@ -153,7 +153,7 @@ GitHub Actions runs portable Panorama, Rust, and Qt tests on Windows Server 2022
 - CS2 and Dota 2 addons use different loading conventions. This project uses the CS2-loaded `addon/resource/platform_english.txt` and `platform_schinese.txt`, which become `resource/platform_<language>.txt` inside the VPK. The localization system falls back to English when a matching language catalog is unavailable.
 - Static XML text uses `#SwiftDemoVoice_*` tokens. Dynamic JavaScript text must go through `_Localize()` (which calls `$.Localize`) instead of assigning a token directly to `.text`.
 - Dynamic numbers and strings use Panorama dialog variables such as `{d:count}` and `{s:player}`. Add or remove tokens in both catalogs together; the test rejects missing, mismatched, or unused entries.
-- Localization files are runtime `game` resources and are not ResourceCompiler inputs. The build script copies them as raw UTF-8-with-BOM files to `game/csgo_addons/swift_demo_menu_override/resource/` before packing the VPK.
+- Localization files are runtime `game` resources and are not ResourceCompiler inputs. The build script copies them as raw UTF-8-with-BOM files to `game/csgo_addons/cs2demovoice_demoui/resource/` before packing the VPK.
 - The DemoUI has no separate language selector. It follows the CS2 interface language automatically; fully restart CS2 when testing a language change.
 
 ## Versioning and Local Releases
@@ -179,7 +179,7 @@ This runs both test suites, rebuilds the VPK, builds/tests/packages the launcher
 ```text
 release\v<version>\CS2DemoVoice-v<version>-win64.zip
 release\v<version>\CS2DemoVoice-v<version>-source.zip
-release\v<version>\swift_demo_menu_override-v<version>.vpk
+release\v<version>\cs2demovoice_demoui-v<version>.vpk
 release\v<version>\update-manifest.json
 release\v<version>\SHA256SUMS.txt
 ```
@@ -254,3 +254,7 @@ Coding agents should also follow [AGENTS.md](AGENTS.md), which records the proje
 - Valve game resources, names, and trademarks are not relicensed by this repository's MIT license.
 
 Keep [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [launcher/THIRD_PARTY_NOTICES.txt](launcher/THIRD_PARTY_NOTICES.txt) aligned with dependency or distribution changes.
+
+## Artifact naming compatibility
+
+Public packages use `cs2demovoice_demoui.vpk` and `cs2demovoice-voice-indexer.exe`. The launcher migrates the exact legacy VPK SearchPath and cleans up both filenames. Existing internal session paths remain stable for interrupted-session recovery. Upstream attribution and licenses remain unchanged.

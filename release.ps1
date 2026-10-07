@@ -144,9 +144,9 @@ Invoke-Native -Command "git" -Arguments @(
 ) -FailureMessage "Unable to create the source archive."
 $releaseAssets += $sourceAsset
 
-$menuName = "swift_demo_menu_override-v$targetMenuVersion.vpk"
+$menuName = "cs2demovoice_demoui-v$targetMenuVersion.vpk"
 $menuAsset = Join-Path $versionReleaseDir $menuName
-Copy-Item -LiteralPath (Join-Path $projectRoot "dist\swift_demo_menu_override.vpk") -Destination $menuAsset
+Copy-Item -LiteralPath (Join-Path $projectRoot "dist\cs2demovoice_demoui.vpk") -Destination $menuAsset
 $releaseAssets += $menuAsset
 
 $launcherHash = (Get-FileHash -LiteralPath $packageAsset -Algorithm SHA256).Hash.ToLowerInvariant()

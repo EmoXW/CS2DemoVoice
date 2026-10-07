@@ -29,13 +29,13 @@ The launcher statically compiles the vendored miniz 3.1.2 source to enumerate ZI
 
 ## source2-demo 0.5.8
 
-The packaged `swift-demo-voice-indexer.exe` statically links Artem Rupasov's `source2-demo` parser to extract CS2 `SvcVoiceData` speaker/tick information without rewriting the Demo. The project is dual-licensed under MIT or Apache-2.0; CS2DemoVoice uses it under the MIT option and packages that license as `licenses/source2-demo-MIT.txt`.
+The packaged `cs2demovoice-voice-indexer.exe` statically links Artem Rupasov's `source2-demo` parser to extract CS2 `SvcVoiceData` speaker/tick information without rewriting the Demo. The project is dual-licensed under MIT or Apache-2.0; CS2DemoVoice uses it under the MIT option and packages that license as `licenses/source2-demo-MIT.txt`.
 
 - <https://github.com/Rupas1k/source2-demo>
 
 ## zstd-rs 0.13.3 / Zstandard 1.5.7
 
-The packaged `swift-demo-voice-indexer.exe` statically links `zstd-rs` and its bundled Zstandard implementation to stream-decompress FACEIT `.dem.zst` downloads. No external `zstd.exe` or runtime DLL is required. The Rust bindings are used under the MIT option and the bundled Zstandard implementation under BSD-3-Clause. Packaged releases include `licenses/zstd-rs-MIT.txt` and `licenses/zstd-BSD-3-Clause.txt`.
+The packaged `cs2demovoice-voice-indexer.exe` statically links `zstd-rs` and its bundled Zstandard implementation to stream-decompress FACEIT `.dem.zst` downloads. No external `zstd.exe` or runtime DLL is required. The Rust bindings are used under the MIT option and the bundled Zstandard implementation under BSD-3-Clause. Packaged releases include `licenses/zstd-rs-MIT.txt` and `licenses/zstd-BSD-3-Clause.txt`.
 
 - <https://github.com/gyscos/zstd-rs>
 - <https://github.com/facebook/zstd>

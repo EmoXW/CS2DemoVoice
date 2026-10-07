@@ -68,7 +68,7 @@ function Resolve-Cargo {
     throw "Rust/Cargo was not found. Install the Rust stable toolchain to build the Demo voice indexer."
 }
 
-$vpk = Join-Path $projectRoot "dist\swift_demo_menu_override.vpk"
+$vpk = Join-Path $projectRoot "dist\cs2demovoice_demoui.vpk"
 if (-not (Test-Path -LiteralPath $vpk) -and ($Package -or -not $SkipVpkCheck)) {
     throw "Missing menu VPK. Run ..\demo-menu.ps1 first."
 }
@@ -79,7 +79,7 @@ $voiceIndexerManifest = Join-Path $projectRoot "tools\voice-indexer\Cargo.toml"
 if ($LASTEXITCODE -ne 0) { throw "Demo voice indexer tests failed." }
 & $cargo build --release --locked --manifest-path $voiceIndexerManifest
 if ($LASTEXITCODE -ne 0) { throw "Demo voice indexer build failed." }
-$voiceIndexer = Join-Path $projectRoot "tools\voice-indexer\target\release\swift-demo-voice-indexer.exe"
+$voiceIndexer = Join-Path $projectRoot "tools\voice-indexer\target\release\cs2demovoice-voice-indexer.exe"
 if (-not (Test-Path -LiteralPath $voiceIndexer)) { throw "Built Demo voice indexer was not found." }
 
 $cmake = Resolve-CMake
@@ -108,8 +108,8 @@ if ($Package) {
     if (-not $launcherExe) { throw "Built launcher executable was not found." }
 
     Copy-Item -LiteralPath $launcherExe.FullName -Destination (Join-Path $packageDir "CS2DemoVoice.exe")
-    Copy-Item -LiteralPath $voiceIndexer -Destination (Join-Path $packageDir "swift-demo-voice-indexer.exe")
-    Copy-Item -LiteralPath $vpk -Destination (Join-Path $packageDir "swift_demo_menu_override.vpk")
+    Copy-Item -LiteralPath $voiceIndexer -Destination (Join-Path $packageDir "cs2demovoice-voice-indexer.exe")
+    Copy-Item -LiteralPath $vpk -Destination (Join-Path $packageDir "cs2demovoice_demoui.vpk")
     Copy-Item -LiteralPath (Join-Path $launcherRoot "README.md") -Destination (Join-Path $packageDir "README.txt")
     Copy-Item -LiteralPath (Join-Path $launcherRoot "README_CN.md") -Destination (Join-Path $packageDir "README_CN.txt")
     Copy-Item -LiteralPath (Join-Path $projectRoot "LICENSE") -Destination (Join-Path $packageDir "LICENSE.txt")

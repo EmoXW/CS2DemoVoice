@@ -79,7 +79,7 @@ If the launcher was interrupted, reopen it to resume the pending cleanup.
 | The launcher says cleanup is pending | Fully exit CS2, reopen the launcher if necessary, and select **Stop and restore**. |
 | Some or all player voices are unavailable | The launcher can only play voice packets stored in the Demo; missing recordings cannot be recovered. |
 | The speaker HUD shows a player but no voice is audible | Restart playback with the current package. Demo slots and discovered XUIDs are enabled automatically; **HEAR ALL** repeats both operations manually. |
-| Voice plays but the lower-left speaker HUD stays empty | Start playback through the complete launcher package. A standalone DemoUI VPK has only an empty fallback index, and older packages do not include `swift-demo-voice-indexer.exe`. |
+| Voice plays but the lower-left speaker HUD stays empty | Start playback through the complete launcher package. A standalone DemoUI VPK has only an empty fallback index, and older packages do not include `cs2demovoice-voice-indexer.exe`. |
 
 ## Compatibility and Safety
 

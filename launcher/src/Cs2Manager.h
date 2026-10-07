@@ -34,8 +34,8 @@ struct DemoArchiveEntry
 class Cs2Manager
 {
 public:
-    static constexpr const char *kVpkName = "swift_demo_menu_override.vpk";
-    static constexpr const char *kVoiceIndexerName = "swift-demo-voice-indexer.exe";
+    static constexpr const char *kVpkName = "cs2demovoice_demoui.vpk";
+    static constexpr const char *kVoiceIndexerName = "cs2demovoice-voice-indexer.exe";
     static constexpr const char *kCfgName = "swift_demo_launcher.cfg";
     static constexpr const char *kSessionMarker = ".swift_demo_launcher_active";
 

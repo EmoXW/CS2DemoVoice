@@ -690,14 +690,15 @@ bool Cs2Manager::isCs2Running()
 
 bool Cs2Manager::isOverrideInstalled(const Cs2Paths &paths)
 {
-    if (QFileInfo::exists(targetVpkPath(paths)))
+    if (QFileInfo::exists(targetVpkPath(paths))
+        || QFileInfo::exists(QDir(paths.csgoDir).filePath(QStringLiteral("overrides/swift_demo_menu_override.vpk"))))
         return true;
     QFile gameInfo(paths.gameInfo);
     if (!gameInfo.open(QIODevice::ReadOnly))
         return false;
     TextEncoding encoding = TextEncoding::Utf8;
     const QString text = decodeText(gameInfo.readAll(), &encoding);
-    const QRegularExpression overrideLine(QStringLiteral(R"((?m)^\s*Game\s+csgo/overrides/swift_demo_menu_override\.vpk\s*$)"), QRegularExpression::CaseInsensitiveOption);
+    const QRegularExpression overrideLine(QStringLiteral(R"((?m)^\s*Game\s+csgo/overrides/(?:cs2demovoice_demoui|swift_demo_menu_override)\.vpk\s*$)"), QRegularExpression::CaseInsensitiveOption);
     return overrideLine.match(text).hasMatch();
 }
 
@@ -721,7 +722,33 @@ QString Cs2Manager::addOverrideSearchPath(const QString &gameInfoText, bool *cha
     *changed = false;
     const QString newline = gameInfoText.contains(QStringLiteral("\r\n")) ? QStringLiteral("\r\n") : QStringLiteral("\n");
     QStringList lines = gameInfoText.split(QRegularExpression(QStringLiteral("\r\n|\n")), Qt::KeepEmptyParts);
-    const QRegularExpression overrideLine(QStringLiteral(R"(^\s*Game\s+csgo/overrides/swift_demo_menu_override\.vpk\s*$)"), QRegularExpression::CaseInsensitiveOption);
+    const QRegularExpression oldOverrideLine(QStringLiteral(R"(^\s*Game\s+csgo/overrides/swift_demo_menu_override\.vpk\s*$)"), QRegularExpression::CaseInsensitiveOption);
+    const QRegularExpression newOverrideLine(QStringLiteral(R"(^\s*Game\s+csgo/overrides/cs2demovoice_demoui\.vpk\s*$)"), QRegularExpression::CaseInsensitiveOption);
+    bool hasNewOverride = false;
+    bool migrated = false;
+    for (const QString &line : lines)
+        hasNewOverride = hasNewOverride || newOverrideLine.match(line).hasMatch();
+    for (int index = lines.size() - 1; index >= 0; --index) {
+        if (!oldOverrideLine.match(lines[index]).hasMatch())
+            continue;
+        migrated = true;
+        if (hasNewOverride) {
+            lines.removeAt(index);
+        } else {
+            lines[index].replace(QStringLiteral("swift_demo_menu_override.vpk"), QString::fromLatin1(kVpkName), Qt::CaseInsensitive);
+            hasNewOverride = true;
+        }
+    }
+    if (migrated) {
+        const QString updated = addOverrideSearchPath(lines.join(newline), changed, error);
+        if (error && !error->isEmpty()) {
+            *changed = false;
+            return gameInfoText;
+        }
+        *changed = updated != gameInfoText;
+        return updated;
+    }
+    const QRegularExpression overrideLine(QStringLiteral(R"(^\s*Game\s+csgo/overrides/cs2demovoice_demoui\.vpk\s*$)"), QRegularExpression::CaseInsensitiveOption);
     const QRegularExpression voiceLine(QStringLiteral(R"(^\s*Game\s+csgo/overrides/swift_demo_voice_session\.vpk\s*$)"), QRegularExpression::CaseInsensitiveOption);
     const QRegularExpression legacyVoiceLine(QStringLiteral(R"(^\s*Game\s+csgo/overrides/swift_demo_voice_session\s*$)"), QRegularExpression::CaseInsensitiveOption);
     const QRegularExpression baseGameLine(QStringLiteral(R"(^(\s*)Game\s+csgo\s*(?://.*)?$)"), QRegularExpression::CaseInsensitiveOption);
@@ -790,7 +817,7 @@ QString Cs2Manager::removeOverrideSearchPath(const QString &gameInfoText, bool *
     *changed = false;
     const QString newline = gameInfoText.contains(QStringLiteral("\r\n")) ? QStringLiteral("\r\n") : QStringLiteral("\n");
     const QStringList lines = gameInfoText.split(QRegularExpression(QStringLiteral("\r\n|\n")), Qt::KeepEmptyParts);
-    const QRegularExpression overrideLine(QStringLiteral(R"(^\s*Game\s+csgo/overrides/(?:swift_demo_menu_override\.vpk|swift_demo_voice_session(?:\.vpk)?)\s*$)"), QRegularExpression::CaseInsensitiveOption);
+    const QRegularExpression overrideLine(QStringLiteral(R"(^\s*Game\s+csgo/overrides/(?:(?:cs2demovoice_demoui|swift_demo_menu_override)\.vpk|swift_demo_voice_session(?:\.vpk)?)\s*$)"), QRegularExpression::CaseInsensitiveOption);
     QStringList kept;
     kept.reserve(lines.size());
     for (const QString &line : lines) {
@@ -1085,9 +1112,14 @@ LauncherResult Cs2Manager::removeDemoSession(const Cs2Paths &paths)
         errors.append(error);
     }
 
-    const QString vpk = targetVpkPath(paths);
-    if (QFileInfo::exists(vpk) && !QFile::remove(vpk))
-        errors.append(QCoreApplication::translate("Cs2Manager", "Unable to remove the DemoUI VPK: %1").arg(QDir::toNativeSeparators(vpk)));
+    const QStringList ownedVpks = {
+        targetVpkPath(paths),
+        QDir(paths.csgoDir).filePath(QStringLiteral("overrides/swift_demo_menu_override.vpk"))
+    };
+    for (const QString &vpk : ownedVpks) {
+        if (QFileInfo::exists(vpk) && !QFile::remove(vpk))
+            errors.append(QCoreApplication::translate("Cs2Manager", "Unable to remove the DemoUI VPK: %1").arg(QDir::toNativeSeparators(vpk)));
+    }
 
     const QString config = cfgPath(paths);
     if (QFileInfo::exists(config) && !QFile::remove(config))

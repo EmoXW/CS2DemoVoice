@@ -486,14 +486,14 @@ fn run() -> Result<()> {
             unpack_zstd_demo(Path::new(input), Path::new(output))
         }
         _ => bail!(
-            "usage: swift-demo-voice-indexer <input.dem> <output.vjs>\n       swift-demo-voice-indexer compile-vjs <input.vjs> <output.vjs_c>\n       swift-demo-voice-indexer pack-vpk <input.vjs_c> <output.vpk>\n       swift-demo-voice-indexer build-session-vpk <input.dem> <output.vpk>\n       swift-demo-voice-indexer unpack-zst <input.dem.zst> <output.dem>"
+            "usage: cs2demovoice-voice-indexer <input.dem> <output.vjs>\n       cs2demovoice-voice-indexer compile-vjs <input.vjs> <output.vjs_c>\n       cs2demovoice-voice-indexer pack-vpk <input.vjs_c> <output.vpk>\n       cs2demovoice-voice-indexer build-session-vpk <input.dem> <output.vpk>\n       cs2demovoice-voice-indexer unpack-zst <input.dem.zst> <output.dem>"
         ),
     }
 }
 
 fn main() -> Result<()> {
     std::thread::Builder::new()
-        .name("swift-demo-voice-indexer".to_string())
+        .name("cs2demovoice-voice-indexer".to_string())
         .stack_size(32 * 1024 * 1024)
         .spawn(run)?
         .join()
@@ -511,7 +511,7 @@ mod tests {
             .expect("system clock should be after the Unix epoch")
             .as_nanos();
         env::temp_dir().join(format!(
-            "swift-demo-voice-indexer-{name}-{}-{nonce}",
+            "cs2demovoice-voice-indexer-{name}-{}-{nonce}",
             std::process::id()
         ))
     }

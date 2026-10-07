@@ -89,27 +89,27 @@ void LauncherCoreTest::installsSearchPathIdempotently()
     QVERIFY2(changed, qPrintable(error));
     QVERIFY(installed.contains(QStringLiteral(
         "Game\tcsgo/overrides/swift_demo_voice_session.vpk\r\n"
-        "\t\t\tGame\tcsgo/overrides/swift_demo_menu_override.vpk\r\n"
+        "\t\t\tGame\tcsgo/overrides/cs2demovoice_demoui.vpk\r\n"
         "\t\t\tGame\tcsgo")));
 
     const QString secondPass = Cs2Manager::addOverrideSearchPath(installed, &changed, &error);
     QVERIFY(!changed);
     QCOMPARE(secondPass, installed);
-    QCOMPARE(installed.count(QStringLiteral("csgo/overrides/swift_demo_menu_override.vpk")), 1);
+    QCOMPARE(installed.count(QStringLiteral("csgo/overrides/cs2demovoice_demoui.vpk")), 1);
     QCOMPARE(installed.count(QStringLiteral("csgo/overrides/swift_demo_voice_session.vpk")), 1);
 
     const QString legacyInstall = QStringLiteral(
         "\"SearchPaths\"\n"
         "{\n"
-        "\tGame\tcsgo/overrides/swift_demo_menu_override.vpk\n"
+        "\tGame\tcsgo/overrides/cs2demovoice_demoui.vpk\n"
         "\tGame\tcsgo\n"
         "}\n");
     const QString upgraded = Cs2Manager::addOverrideSearchPath(legacyInstall, &changed, &error);
     QVERIFY2(changed, qPrintable(error));
     QVERIFY(upgraded.contains(QStringLiteral(
         "\tGame\tcsgo/overrides/swift_demo_voice_session.vpk\n"
-        "\tGame\tcsgo/overrides/swift_demo_menu_override.vpk\n")));
-    QCOMPARE(upgraded.count(QStringLiteral("csgo/overrides/swift_demo_menu_override.vpk")), 1);
+        "\tGame\tcsgo/overrides/cs2demovoice_demoui.vpk\n")));
+    QCOMPARE(upgraded.count(QStringLiteral("csgo/overrides/cs2demovoice_demoui.vpk")), 1);
     QCOMPARE(upgraded.count(QStringLiteral("csgo/overrides/swift_demo_voice_session.vpk")), 1);
 
     const QString interruptedInstall = QStringLiteral(
@@ -120,7 +120,7 @@ void LauncherCoreTest::installsSearchPathIdempotently()
         "}\n");
     const QString repaired = Cs2Manager::addOverrideSearchPath(interruptedInstall, &changed, &error);
     QVERIFY2(changed, qPrintable(error));
-    QCOMPARE(repaired.count(QStringLiteral("csgo/overrides/swift_demo_menu_override.vpk")), 1);
+    QCOMPARE(repaired.count(QStringLiteral("csgo/overrides/cs2demovoice_demoui.vpk")), 1);
     QCOMPARE(repaired.count(QStringLiteral("csgo/overrides/swift_demo_voice_session.vpk")), 1);
     QVERIFY(!repaired.contains(QStringLiteral("Game\tcsgo/overrides/swift_demo_voice_session\n")));
 }
@@ -137,17 +137,41 @@ void LauncherCoreTest::refusesUnknownGameInfoShape()
 
 void LauncherCoreTest::removesOnlyOwnedSearchPath()
 {
+    const QString legacy = QStringLiteral(
+        "\tGame\tcsgo/overrides/swift_demo_menu_override.vpk\n"
+        "\tGame\tcsgo/overrides/cs2demovoice_demoui.vpk\n"
+        "\tGame\tcsgo/overrides/swift_demo_voice_session.vpk\n"
+        "\tGame\tcsgo/overrides/swift_demo_menu_override.vpk.bak\n"
+        "\tGame\tcsgo\n");
+    bool migrated = false;
+    QString error;
+    const QString oldOnly = QStringLiteral("\tGame\tcsgo/overrides/swift_demo_menu_override.vpk\n\tGame\tcsgo\n");
+    const QString oldUpgraded = Cs2Manager::addOverrideSearchPath(oldOnly, &migrated, &error);
+    QVERIFY2(migrated, qPrintable(error));
+    QVERIFY(oldUpgraded.contains(QStringLiteral("cs2demovoice_demoui.vpk")));
+    QVERIFY(oldUpgraded.contains(QStringLiteral("swift_demo_voice_session.vpk")));
+    QVERIFY(!oldUpgraded.contains(QStringLiteral("swift_demo_menu_override.vpk")));
+    const QString upgraded = Cs2Manager::addOverrideSearchPath(legacy, &migrated, &error);
+    QVERIFY2(migrated, qPrintable(error));
+    QCOMPARE(upgraded.count(QStringLiteral("csgo/overrides/cs2demovoice_demoui.vpk")), 1);
+    QVERIFY(!upgraded.contains(QStringLiteral("swift_demo_menu_override.vpk\n")));
+    QCOMPARE(Cs2Manager::addOverrideSearchPath(upgraded, &migrated, &error), upgraded);
+    QVERIFY(!migrated);
+    const QString legacyCleaned = Cs2Manager::removeOverrideSearchPath(legacy, &migrated);
+    QVERIFY(migrated);
+    QVERIFY(legacyCleaned.contains(QStringLiteral("swift_demo_menu_override.vpk.bak")));
+    QVERIFY(!legacyCleaned.contains(QStringLiteral("swift_demo_menu_override.vpk\n")));
     const QString installed = QStringLiteral(
         "\tGame\tcsgo/overrides/some_other_mod.vpk\n"
         "\tGame\tcsgo/overrides/swift_demo_voice_session\n"
         "\tGame\tcsgo/overrides/swift_demo_voice_session.vpk\n"
-        "\tGame\tcsgo/overrides/swift_demo_menu_override.vpk\n"
+        "\tGame\tcsgo/overrides/cs2demovoice_demoui.vpk\n"
         "\tGame\tcsgo\n");
     bool changed = false;
     const QString cleaned = Cs2Manager::removeOverrideSearchPath(installed, &changed);
     QVERIFY(changed);
     QVERIFY(cleaned.contains(QStringLiteral("some_other_mod.vpk")));
-    QVERIFY(!cleaned.contains(QStringLiteral("swift_demo_menu_override.vpk")));
+    QVERIFY(!cleaned.contains(QStringLiteral("cs2demovoice_demoui.vpk")));
     QVERIFY(!cleaned.contains(QStringLiteral("swift_demo_voice_session")));
 }
 
@@ -353,7 +377,7 @@ void LauncherCoreTest::parsesIndependentReleaseUpdates()
         },
         "menu": {
             "version": "0.1.1",
-            "url": "https://github.com/EmoXW/CS2DemoVoice/releases/download/menu-v0.1.1/swift_demo_menu_override-v0.1.1.vpk",
+            "url": "https://github.com/EmoXW/CS2DemoVoice/releases/download/menu-v0.1.1/cs2demovoice_demoui-v0.1.1.vpk",
             "sha256": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
         }
     })JSON";

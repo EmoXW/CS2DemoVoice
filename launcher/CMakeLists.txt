@@ -93,12 +93,12 @@ qt_add_resources(SwiftDemoLauncher "embedded_fonts"
     BASE "${CMAKE_CURRENT_SOURCE_DIR}/assets/fonts"
     FILES assets/fonts/NotoSansSC-VF.ttf
 )
-set(VOICE_INDEXER_EXE "${CMAKE_CURRENT_SOURCE_DIR}/../tools/voice-indexer/target/release/swift-demo-voice-indexer.exe")
+set(VOICE_INDEXER_EXE "${CMAKE_CURRENT_SOURCE_DIR}/../tools/voice-indexer/target/release/cs2demovoice-voice-indexer.exe")
 if(EXISTS "${VOICE_INDEXER_EXE}")
     add_custom_command(TARGET SwiftDemoLauncher POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
             "${VOICE_INDEXER_EXE}"
-            "$<TARGET_FILE_DIR:SwiftDemoLauncher>/swift-demo-voice-indexer.exe"
+            "$<TARGET_FILE_DIR:SwiftDemoLauncher>/cs2demovoice-voice-indexer.exe"
         COMMENT "Copying the Demo voice indexer next to the launcher"
     )
 else()
@@ -144,12 +144,12 @@ else()
     target_compile_options(SwiftDemoLauncher PRIVATE -Wall -Wextra -Wpedantic)
 endif()
 
-set(MENU_VPK "${CMAKE_CURRENT_SOURCE_DIR}/../dist/swift_demo_menu_override.vpk")
+set(MENU_VPK "${CMAKE_CURRENT_SOURCE_DIR}/../dist/cs2demovoice_demoui.vpk")
 if(EXISTS "${MENU_VPK}")
     add_custom_command(TARGET SwiftDemoLauncher POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
             "${MENU_VPK}"
-            "$<TARGET_FILE_DIR:SwiftDemoLauncher>/swift_demo_menu_override.vpk"
+            "$<TARGET_FILE_DIR:SwiftDemoLauncher>/cs2demovoice_demoui.vpk"
         COMMENT "Copying the compiled demo menu VPK next to the launcher"
     )
 else()
@@ -188,7 +188,7 @@ if(EXISTS "${MENU_VPK}")
     install(FILES "${MENU_VPK}" DESTINATION .)
 endif()
 if(EXISTS "${VOICE_INDEXER_EXE}")
-    install(FILES "${VOICE_INDEXER_EXE}" DESTINATION . RENAME swift-demo-voice-indexer.exe)
+    install(FILES "${VOICE_INDEXER_EXE}" DESTINATION . RENAME cs2demovoice-voice-indexer.exe)
     install(FILES
         "${CMAKE_CURRENT_SOURCE_DIR}/../tools/voice-indexer/SOURCE2_DEMO_LICENSE-MIT.txt"
         DESTINATION licenses

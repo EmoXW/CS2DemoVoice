@@ -56,7 +56,7 @@ For a fast CI-like build that does not require the Panorama VPK:
   -SkipVpkCheck
 ```
 
-The script tests/builds `swift-demo-voice-indexer.exe`, configures CMake, builds the launcher and translations, and runs CTest. `-SkipVpkCheck` is only for a non-packaging build. It does not call `windeployqt`, so `launcher\build\Release\CS2DemoVoice.exe` depends on the Qt development environment and is not intended to be launched by double-clicking. A missing `Qt6Gui.dll` message means the raw build output was used instead of a deployed package.
+The script tests/builds `cs2demovoice-voice-indexer.exe`, configures CMake, builds the launcher and translations, and runs CTest. `-SkipVpkCheck` is only for a non-packaging build. It does not call `windeployqt`, so `launcher\build\Release\CS2DemoVoice.exe` depends on the Qt development environment and is not intended to be launched by double-clicking. A missing `Qt6Gui.dll` message means the raw build output was used instead of a deployed package.
 
 ### Create a runnable package
 
@@ -77,13 +77,13 @@ launcher\package\CS2DemoVoice-v<version>\CS2DemoVoice.exe
 launcher\package\CS2DemoVoice-v<version>-win64.zip
 ```
 
-Run the EXE from the unpacked version directory for local end-to-end testing. The packaging step uses `windeployqt` to collect `Qt6Core.dll`, `Qt6Gui.dll`, `Qt6Network.dll`, `Qt6Widgets.dll`, the Windows TLS backend, and `platforms\qwindows.dll`, but deliberately excludes the standalone VC++ Redistributable installer to keep the release ZIP compact. `CS2DemoVoice.exe`, `swift-demo-voice-indexer.exe`, its DLLs/plugins, translations, and `swift_demo_menu_override.vpk` must remain together. Player machines do not need the Workshop Tools DLC, `resourcecompiler.exe`, or VPKEdit.
+Run the EXE from the unpacked version directory for local end-to-end testing. The packaging step uses `windeployqt` to collect `Qt6Core.dll`, `Qt6Gui.dll`, `Qt6Network.dll`, `Qt6Widgets.dll`, the Windows TLS backend, and `platforms\qwindows.dll`, but deliberately excludes the standalone VC++ Redistributable installer to keep the release ZIP compact. `CS2DemoVoice.exe`, `cs2demovoice-voice-indexer.exe`, its DLLs/plugins, translations, and `cs2demovoice_demoui.vpk` must remain together. Player machines do not need the Workshop Tools DLC, `resourcecompiler.exe`, or VPKEdit.
 
 The repository-level `release.ps1` command is for committed release candidates, not ordinary development testing. It refuses a dirty Git working tree because the source archive is generated from `HEAD`.
 
 ZIP support is compiled into `CS2DemoVoice.exe` from the vendored miniz 3.1.2 source, so users do not need 7-Zip, PowerShell extraction, or another executable. The package includes `licenses/miniz-MIT.txt`.
 
-Zstandard support is statically compiled into `swift-demo-voice-indexer.exe` through `zstd-rs`; no external `zstd.exe` or runtime DLL is required. The package includes the corresponding MIT and BSD-3-Clause license texts.
+Zstandard support is statically compiled into `cs2demovoice-voice-indexer.exe` through `zstd-rs`; no external `zstd.exe` or runtime DLL is required. The package includes the corresponding MIT and BSD-3-Clause license texts.
 
 ## Localization and Typography
 

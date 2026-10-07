@@ -1,7 +1,7 @@
 param(
 	[string]$ProjectRoot = "",
 	[string]$CsgoPath = "F:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\game\csgo",
-	[string]$AddonName = "swift_demo_menu_override"
+	[string]$AddonName = "cs2demovoice_demoui"
 )
 
 $ErrorActionPreference = "Stop"
