@@ -61,18 +61,7 @@ bool isDemoSource(const QString &path)
 
 QPixmap makeLogo()
 {
-    QPixmap pixmap(48, 48);
-    pixmap.fill(Qt::transparent);
-    QPainter painter(&pixmap);
-    painter.setRenderHint(QPainter::Antialiasing);
-    painter.setPen(Qt::NoPen);
-    painter.setBrush(QColor(QStringLiteral("#5aa9ff")));
-    painter.drawRoundedRect(QRectF(1, 1, 46, 46), 13, 13);
-    painter.setBrush(QColor(QStringLiteral("#ffffff")));
-    QPolygonF triangle;
-    triangle << QPointF(20, 15) << QPointF(20, 33) << QPointF(35, 24);
-    painter.drawPolygon(triangle);
-    return pixmap;
+    return QPixmap(QStringLiteral(":/images/app_logo.png"));
 }
 
 QPixmap makeCircularPixmap(const QPixmap &source, int side)

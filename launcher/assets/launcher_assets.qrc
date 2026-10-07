@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/images">
+        <file alias="app_logo.png">app_logo.png</file>
         <file alias="creator_avatar.png">creator_avatar.png</file>
         <file alias="github_mark.png">github_mark.png</file>
         <file alias="sponsor_icon.ico">sponsor_icon.ico</file>
