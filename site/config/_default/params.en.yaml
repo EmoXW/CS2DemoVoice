@@ -1,0 +1,26 @@
+hugoblox:
+  identity:
+    tagline: Voice and navigation controls for CS2 demo playback.
+    description: >-
+      CS2DemoVoice extends the native Counter-Strike 2 DemoUI with recorded voice playback,
+      speaker identification, POV switching, round navigation, and direct support for downloaded demo archives.
+
+  header:
+    cta:
+      enable: false
+      text: Download latest
+      url: https://github.com/EmoXW/CS2-DemoVoice/releases/latest
+
+  footer:
+    text: "Independent open-source project. Not affiliated with or endorsed by Valve or FACEIT."
+
+  copyright:
+    notice: "© {year} {name}. Original project code is MIT licensed."
+
+  seo:
+    title: CS2DemoVoice — Voice controls for CS2 demos
+
+  locale:
+    date_format: "January 2, 2006"
+    time_format: "3:04 PM"
+    address_format: en-us
