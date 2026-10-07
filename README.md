@@ -18,7 +18,7 @@ No SwiftlyS2 installation, server plugin, Counter-Strike 2 Workshop Tools DLC, W
 
 ### Windows launcher
 
-![CS2DemoVoice launcher with Demo and ZIP selection and TrueView compatibility control](docs/images/launcher-playback-ui.png)
+![CS2DemoVoice launcher with Demo and ZIP selection and TrueView compatibility control](docs/images/launcher-playback-ui-en.png)
 
 Select or drag in a Demo, ZIP archive, or `.dem.zst` download, confirm the detected CS2 installation, and start playback. The launcher remembers the interface language, TrueView preference, and optional advanced launch arguments, then removes its temporary files after playback.
 

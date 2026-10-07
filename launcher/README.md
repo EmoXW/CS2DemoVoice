@@ -6,7 +6,7 @@ A lightweight Windows Qt 6 Widgets application that safely installs this project
 
 ## Interface Preview
 
-![CS2DemoVoice launcher with Demo and ZIP selection and TrueView compatibility control](../docs/images/launcher-playback-ui.png)
+![CS2DemoVoice launcher with Demo and ZIP selection and TrueView compatibility control](../docs/images/launcher-playback-ui-en.png)
 
 The launcher keeps the playback workflow on one page: choose a Demo, review the compatibility option, optionally configure advanced launch arguments, start CS2, then restore the temporary session when finished.
 
