@@ -47,7 +47,7 @@ The launcher must never imply that an `-insecure` session is suitable for matchm
 | `MENU_VERSION` | DemoUI VPK semantic version, synchronized with `VERSION` for public Releases. |
 | `release.ps1` | Complete local release-candidate build and optional GitHub publication entry point. |
 | `.github/workflows/ci.yml` | Portable Windows CI for JavaScript and Qt tests; it intentionally does not build the VPK. |
-| `README.md`, `README_CN.md` | Concise player-facing English and Simplified Chinese documentation; keep them synchronized. |
+| `README.md`, `README_EN.md` | Concise player-facing Simplified Chinese and English documentation; keep them synchronized. |
 | `DEVELOPMENT.md`, `DEVELOPMENT_CN.md` | Developer-facing build, test, localization, versioning, release, and contribution documentation. |
 | `docs/images/` | Screenshots referenced by public documentation; keep relative links portable. |
 
@@ -218,7 +218,7 @@ GitHub CI uses Windows Server 2022, Node 22, Qt 6.8.x/MSVC 2022, and `-SkipVpkCh
 ## Localization Workflow
 
 - Keep translatable C++ source text in English and use `tr(...)` or `QCoreApplication::translate(...)`.
-- Keep `README.md` and `README_CN.md` semantically synchronized for player-facing changes, and keep technical detail in the matching `DEVELOPMENT` documents.
+- Keep `README.md` and `README_EN.md` semantically synchronized for player-facing changes, and keep technical detail in the matching `DEVELOPMENT` documents.
 - Preserve Qt placeholders exactly (`%1`, `%2`, and so on), newlines, command names, and paths.
 - After configuring CMake, update translation sources with:
 

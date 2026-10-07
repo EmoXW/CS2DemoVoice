@@ -1,8 +1,8 @@
 # CS2DemoVoice Developer Guide
 
-[English](DEVELOPMENT.md) | [简体中文](DEVELOPMENT_CN.md) | [Player README](README.md)
+[English](DEVELOPMENT.md) | [简体中文](DEVELOPMENT_CN.md) | [Player README](README_EN.md)
 
-This guide contains the technical material for building, testing, packaging, and releasing CS2DemoVoice. Player installation and usage are documented in the main [README](README.md).
+This guide contains the technical material for building, testing, packaging, and releasing CS2DemoVoice. Player installation and usage are documented in the main [README](README_EN.md).
 
 ## Architecture
 

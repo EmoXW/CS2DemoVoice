@@ -1,6 +1,6 @@
 # CS2DemoVoice 启动器
 
-[English](README.md) | [简体中文](README_CN.md) | [项目主页](../README_CN.md)
+[English](README.md) | [简体中文](README_CN.md) | [项目主页](../README.md)
 
 这是一个轻量级 Windows Qt 6 Widgets 应用，用于安全地安装本项目的 Panorama DemoUI，并直接打开 Counter-Strike 2 `.dem` 文件、下载的 `.zip` 压缩包和 FACEIT `.dem.zst` 文件。内置的只读 Rust 辅助程序会解压 Zstandard Demo，并提取已录制语音的玩家/tick 数据；程序不包含 2D 回放或网络服务。
 

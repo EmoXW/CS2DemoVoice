@@ -1,6 +1,6 @@
 # CS2DemoVoice Launcher
 
-[English](README.md) | [简体中文](README_CN.md) | [Project overview](../README.md)
+[English](README.md) | [简体中文](README_CN.md) | [Project overview](../README_EN.md)
 
 A lightweight Windows Qt 6 Widgets application that safely installs this project's Panorama DemoUI and opens Counter-Strike 2 `.dem` files, downloaded `.zip` archives, and FACEIT `.dem.zst` files. Its bundled read-only Rust sidecar decompresses Zstandard Demos and extracts recorded voice speaker/tick data; it does not include a 2D replay viewer or network service.
 

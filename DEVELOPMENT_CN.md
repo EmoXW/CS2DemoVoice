@@ -1,8 +1,8 @@
 # CS2DemoVoice 开发者指南
 
-[English](DEVELOPMENT.md) | [简体中文](DEVELOPMENT_CN.md) | [玩家 README](README_CN.md)
+[English](DEVELOPMENT.md) | [简体中文](DEVELOPMENT_CN.md) | [玩家 README](README.md)
 
-本文档集中说明 CS2DemoVoice 的架构、构建、测试、打包和发布流程。玩家安装与使用方法请阅读主 [README](README_CN.md)。
+本文档集中说明 CS2DemoVoice 的架构、构建、测试、打包和发布流程。玩家安装与使用方法请阅读主 [README](README.md)。
 
 ## 项目架构
 
