@@ -848,7 +848,7 @@ void LauncherWindow::buildInterface()
     creator->setContentsMargins(22, 0, 0, 0);
     creator->setSpacing(12);
     auto *avatar = new QLabel(creatorPanel);
-    avatar->setPixmap(makeLogo().scaled(58, 58, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    avatar->setPixmap(makeCircularPixmap(QPixmap(QStringLiteral(":/images/creator_avatar.png")), 58));
     avatar->setFixedSize(58, 58);
     creator->addWidget(avatar, 0, Qt::AlignVCenter);
     auto *identityCopy = new QVBoxLayout;
@@ -932,14 +932,17 @@ void LauncherWindow::buildInterface()
         auto *icon = new QLabel(button);
         icon->setObjectName(QStringLiteral("LinkIcon"));
         icon->setProperty("accent", accent);
-        icon->setPixmap(makeGlyph(glyph, 20, iconColor));
+        icon->setPixmap(accent == QStringLiteral("github")
+                ? QPixmap(QStringLiteral(":/images/github_mark.png")).scaled(24, 24, Qt::KeepAspectRatio, Qt::SmoothTransformation)
+                : makeGlyph(glyph, 20, iconColor));
         icon->setAlignment(Qt::AlignCenter);
         icon->setFixedSize(36, 36);
         icon->setAttribute(Qt::WA_TransparentForMouseEvents);
-        content->addWidget(icon, 0, Qt::AlignTop);
+        content->addWidget(icon, 0, Qt::AlignVCenter);
 
         auto *copy = new QVBoxLayout;
         copy->setSpacing(3);
+        copy->addStretch(1);
         auto *linkTitle = new QLabel(title, button);
         linkTitle->setObjectName(QStringLiteral("LinkTitle"));
         linkTitle->setAttribute(Qt::WA_TransparentForMouseEvents);
@@ -959,7 +962,7 @@ void LauncherWindow::buildInterface()
             QColor(QStringLiteral("#8b95a3"))));
         external->setFixedSize(18, 18);
         external->setAttribute(Qt::WA_TransparentForMouseEvents);
-        content->addWidget(external, 0, Qt::AlignTop);
+        content->addWidget(external, 0, Qt::AlignVCenter);
         QObject::connect(button, &QPushButton::clicked, button, [url]() {
             QDesktopServices::openUrl(QUrl(url));
         });
@@ -975,18 +978,18 @@ void LauncherWindow::buildInterface()
         Glyph::Code,
         QStringLiteral("github"),
         QColor(QStringLiteral("#31363d"))), 1);
-    about->addLayout(linkCards);
+
 
     auto *supportCard = new QFrame(aboutPage);
     supportCard->setObjectName(QStringLiteral("SupportCard"));
-    supportCard->setMinimumHeight(84);
+    supportCard->setFixedHeight(88);
     auto *support = new QHBoxLayout(supportCard);
-    support->setContentsMargins(16, 12, 14, 12);
-    support->setSpacing(12);
+    support->setContentsMargins(12, 12, 12, 12);
+    support->setSpacing(8);
     auto *supportMark = new QLabel(QStringLiteral("♥"), supportCard);
     supportMark->setObjectName(QStringLiteral("SupportMark"));
     supportMark->setAlignment(Qt::AlignCenter);
-    supportMark->setFixedSize(40, 40);
+    supportMark->setFixedSize(32, 32);
     support->addWidget(supportMark);
     auto *supportCopy = new QVBoxLayout;
     supportCopy->setSpacing(3);
@@ -1002,7 +1005,7 @@ void LauncherWindow::buildInterface()
     supportButton->setObjectName(QStringLiteral("SupportPlatformButton"));
     supportButton->setIcon(QIcon(QStringLiteral(":/images/sponsor_icon.ico")));
     supportButton->setIconSize(QSize(24, 24));
-    supportButton->setFixedSize(126, 44);
+    supportButton->setFixedSize(90, 44);
     supportButton->setCursor(Qt::PointingHandCursor);
     supportButton->setAccessibleName(tr("Sponsor"));
     supportButton->setToolTip(QStringLiteral("https://beg.emoxw.cn"));
@@ -1010,7 +1013,8 @@ void LauncherWindow::buildInterface()
         QDesktopServices::openUrl(QUrl(QStringLiteral("https://beg.emoxw.cn")));
     });
     support->addWidget(supportButton);
-    about->addWidget(supportCard);
+    linkCards->addWidget(supportCard, 1);
+    about->addLayout(linkCards);
 
     about->addStretch(1);
     pages_->addWidget(aboutPage);

@@ -126,6 +126,13 @@ if ($Package) {
         (Join-Path $packageDir "CS2DemoVoice.exe")
     if ($LASTEXITCODE -ne 0) { throw "windeployqt failed." }
 
+    # The creator avatar and sponsor favicon require these image decoders.
+    $imageFormatsDir = Join-Path $packageDir "imageformats"
+    New-Item -ItemType Directory -Force -Path $imageFormatsDir | Out-Null
+    foreach ($plugin in @("qjpeg.dll", "qico.dll")) {
+        Copy-Item -LiteralPath (Join-Path $qt "plugins\imageformats\$plugin") -Destination $imageFormatsDir
+    }
+
     $licenseDir = Join-Path $packageDir "licenses"
     New-Item -ItemType Directory -Force -Path $licenseDir | Out-Null
     $fontLicense = Join-Path $launcherRoot "assets\fonts\OFL-1.1.txt"
