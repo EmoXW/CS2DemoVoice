@@ -12,7 +12,7 @@
 int main(int argc, char *argv[])
 {
     QApplication application(argc, argv);
-    application.setApplicationName(QStringLiteral("Swift DemoUI Pro"));
+    application.setApplicationName(QStringLiteral("CS2DemoVoice"));
     application.setApplicationVersion(QString::fromLatin1(SwiftDemoUIBuild::kVersion));
     application.setProperty("menuVersion", QString::fromLatin1(SwiftDemoUIBuild::kMenuVersion));
     application.setProperty("gitCommit", QString::fromLatin1(SwiftDemoUIBuild::kGitCommit));

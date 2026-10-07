@@ -19,12 +19,12 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-            VALUE "CompanyName", "nicedayzhu\0"
-            VALUE "FileDescription", "Swift DemoUI Pro\0"
+            VALUE "CompanyName", "EmoXW\0"
+            VALUE "FileDescription", "CS2DemoVoice\0"
             VALUE "FileVersion", "@PROJECT_VERSION@\0"
-            VALUE "InternalName", "SwiftDemoUIPro\0"
-            VALUE "OriginalFilename", "SwiftDemoUIPro.exe\0"
-            VALUE "ProductName", "Swift DemoUI Pro\0"
+            VALUE "InternalName", "CS2DemoVoice\0"
+            VALUE "OriginalFilename", "CS2DemoVoice.exe\0"
+            VALUE "ProductName", "CS2DemoVoice\0"
             VALUE "ProductVersion", "@PROJECT_VERSION@\0"
         END
     END

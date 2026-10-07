@@ -14,7 +14,7 @@ $projectRoot = $PSScriptRoot
 $versionPath = Join-Path $projectRoot "VERSION"
 $menuVersionPath = Join-Path $projectRoot "MENU_VERSION"
 $releaseRoot = Join-Path $projectRoot "release"
-$githubRepository = "nicedayzhu/SwiftDemoUIPro"
+$githubRepository = "EmoXW/CS2-DemoVoice"
 
 function Invoke-Native {
     param(
@@ -36,7 +36,7 @@ foreach ($commandName in @("git", "node")) {
 }
 
 Invoke-Native -Command "git" -Arguments @("rev-parse", "--is-inside-work-tree") `
-    -FailureMessage "This command must run inside the SwiftDemoUIPro Git repository."
+    -FailureMessage "This command must run inside the CS2DemoVoice Git repository."
 
 $workingTree = (& git status --porcelain --untracked-files=all)
 if ($LASTEXITCODE -ne 0) { throw "Unable to inspect the Git working tree." }
@@ -124,7 +124,7 @@ if (Test-Path -LiteralPath $versionReleaseDir) {
 New-Item -ItemType Directory -Path $versionReleaseDir -Force | Out-Null
 
 $releaseAssets = @()
-$packageName = "SwiftDemoUIPro-v$targetVersion-win64.zip"
+$packageName = "CS2DemoVoice-v$targetVersion-win64.zip"
 $packageAsset = Join-Path $versionReleaseDir $packageName
 $packageSource = Join-Path $projectRoot "launcher\package\$packageName"
 if (-not (Test-Path -LiteralPath $packageSource)) {
@@ -133,12 +133,12 @@ if (-not (Test-Path -LiteralPath $packageSource)) {
 Copy-Item -LiteralPath $packageSource -Destination $packageAsset
 $releaseAssets += $packageAsset
 
-$sourceName = "SwiftDemoUIPro-v$targetVersion-source.zip"
+$sourceName = "CS2DemoVoice-v$targetVersion-source.zip"
 $sourceAsset = Join-Path $versionReleaseDir $sourceName
 Invoke-Native -Command "git" -Arguments @(
     "archive",
     "--format=zip",
-    "--prefix=SwiftDemoUIPro-v$targetVersion/",
+    "--prefix=CS2DemoVoice-v$targetVersion/",
     "--output=$sourceAsset",
     "HEAD"
 ) -FailureMessage "Unable to create the source archive."
@@ -212,7 +212,7 @@ if ($tagExists) {
         throw "Tag $tag already points to another commit."
     }
 } else {
-    Invoke-Native -Command "git" -Arguments @("tag", "-a", $tag, "-m", "Swift DemoUI Pro $tag") `
+    Invoke-Native -Command "git" -Arguments @("tag", "-a", $tag, "-m", "CS2DemoVoice $tag") `
         -FailureMessage "Unable to create tag $tag."
 }
 
@@ -237,7 +237,7 @@ if ($releaseExists) {
         "--draft",
         "--verify-tag",
         "--generate-notes",
-        "--title", "Swift DemoUI Pro $tag"
+        "--title", "CS2DemoVoice $tag"
     )) -FailureMessage "Unable to create draft release $tag."
 }
 

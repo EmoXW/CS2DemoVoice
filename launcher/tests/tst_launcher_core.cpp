@@ -336,11 +336,11 @@ void LauncherCoreTest::rejectsInvalidDemoArchives()
 void LauncherCoreTest::parsesIndependentReleaseUpdates()
 {
     const QByteArray releaseJson = R"JSON({
-        "html_url": "https://github.com/nicedayzhu/SwiftDemoUIPro/releases/tag/menu-v0.1.1",
+        "html_url": "https://github.com/EmoXW/CS2-DemoVoice/releases/tag/menu-v0.1.1",
         "assets": [
             {
                 "name": "update-manifest.json",
-                "browser_download_url": "https://github.com/nicedayzhu/SwiftDemoUIPro/releases/download/menu-v0.1.1/update-manifest.json"
+                "browser_download_url": "https://github.com/EmoXW/CS2-DemoVoice/releases/download/menu-v0.1.1/update-manifest.json"
             }
         ]
     })JSON";
@@ -348,12 +348,12 @@ void LauncherCoreTest::parsesIndependentReleaseUpdates()
         "schemaVersion": 1,
         "launcher": {
             "version": "0.1.0",
-            "url": "https://github.com/nicedayzhu/SwiftDemoUIPro/releases/download/v0.1.0/SwiftDemoUIPro-v0.1.0-win64.zip",
+            "url": "https://github.com/EmoXW/CS2-DemoVoice/releases/download/v0.1.0/CS2DemoVoice-v0.1.0-win64.zip",
             "sha256": "c2e0c4604e9b2f1787963eba32bcfdd104e40ba30182729ad1e8055de3dd696f"
         },
         "menu": {
             "version": "0.1.1",
-            "url": "https://github.com/nicedayzhu/SwiftDemoUIPro/releases/download/menu-v0.1.1/swift_demo_menu_override-v0.1.1.vpk",
+            "url": "https://github.com/EmoXW/CS2-DemoVoice/releases/download/menu-v0.1.1/swift_demo_menu_override-v0.1.1.vpk",
             "sha256": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
         }
     })JSON";
@@ -366,11 +366,11 @@ void LauncherCoreTest::parsesIndependentReleaseUpdates()
     QVERIFY(independent.menu.isNewerThan(QStringLiteral("0.1.0")));
 
     const QByteArray legacyRelease = R"JSON({
-        "html_url": "https://github.com/nicedayzhu/SwiftDemoUIPro/releases/tag/v0.2.0",
+        "html_url": "https://github.com/EmoXW/CS2-DemoVoice/releases/tag/v0.2.0",
         "assets": [
             {
-                "name": "SwiftDemoUIPro-v0.2.0-win64.zip",
-                "browser_download_url": "https://github.com/nicedayzhu/SwiftDemoUIPro/releases/download/v0.2.0/SwiftDemoUIPro-v0.2.0-win64.zip",
+                "name": "CS2DemoVoice-v0.2.0-win64.zip",
+                "browser_download_url": "https://github.com/EmoXW/CS2-DemoVoice/releases/download/v0.2.0/CS2DemoVoice-v0.2.0-win64.zip",
                 "digest": "sha256:abcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcd"
             }
         ]

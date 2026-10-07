@@ -1,13 +1,13 @@
-# Swift DemoUI Pro
+# CS2DemoVoice
 
 [English](README.md) | [简体中文](README_CN.md)
 
-[项目官网](https://nicedayzhu.github.io/SwiftDemoUIPro/) · [下载最新版本](https://github.com/nicedayzhu/SwiftDemoUIPro/releases/latest)
+[项目官网](https://github.com/EmoXW/CS2-DemoVoice) · [下载最新版本](https://github.com/EmoXW/CS2-DemoVoice/releases/latest)
 
 [![许可证：MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![平台：Windows](https://img.shields.io/badge/Platform-Windows-0078D6.svg)](#快速开始)
 
-Swift DemoUI Pro 是一款非官方的 Counter-Strike 2 Demo 与 HLTV 回放客户端增强工具。Windows 启动器可以直接打开 `.dem` 文件、下载的 `.zip` 压缩包和 FACEIT `.dem.zst` 文件；游戏内面板则在保留 Valve 原生 DemoUI 的同时，加入已录制语音控制、一键切换 POV 和回合导航。
+CS2DemoVoice 是一款非官方的 Counter-Strike 2 Demo 与 HLTV 回放客户端增强工具。Windows 启动器可以直接打开 `.dem` 文件、下载的 `.zip` 压缩包和 FACEIT `.dem.zst` 文件；游戏内面板则在保留 Valve 原生 DemoUI 的同时，加入已录制语音控制、一键切换 POV 和回合导航。
 
 玩家不需要安装 SwiftlyS2、服务器插件、Counter-Strike 2 Workshop Tools DLC 或 Workshop 项目，也不必手动解压 ZIP/Zstandard。运行时需要的语音索引编译器、Zstandard 解码器与 session VPK 写入器已经包含在 Release 包中。
 
@@ -18,13 +18,13 @@ Swift DemoUI Pro 是一款非官方的 Counter-Strike 2 Demo 与 HLTV 回放客�
 
 ### Windows 启动器
 
-![Swift DemoUI Pro 启动器的 Demo、ZIP 选择与 TrueView 兼容控制](docs/images/launcher-playback-ui.png)
+![CS2DemoVoice 启动器的 Demo、ZIP 选择与 TrueView 兼容控制](docs/images/launcher-playback-ui.png)
 
 选择或拖入 Demo、ZIP 或 `.dem.zst`，确认自动检测到的 CS2 安装目录，即可开始回放。启动器会记住界面语言、TrueView 选项和可选的高级启动参数，并在回放结束后移除临时文件。
 
 ### 游戏内 DemoUI
 
-![Swift DemoUI Pro 在 CS2 Demo 回放中的玩家语音、POV 与回合导航面板](docs/images/demo-voice-ui.png)
+![CS2DemoVoice 在 CS2 Demo 回放中的玩家语音、POV 与回合导航面板](docs/images/demo-voice-ui.png)
 
 新增面板会保留原生时间轴和播放控制，同时提供按玩家控制已录制语音、切换 POV 和直接跳转回合等功能。通过启动器开始回放时，左下角还会显示当前 Demo tick 正在发出已录制语音包的玩家头像与名称。
 
@@ -46,9 +46,9 @@ Swift DemoUI Pro 是一款非官方的 Counter-Strike 2 Demo 与 HLTV 回放客�
 
 ## 快速开始
 
-下载并解压 `SwiftDemoUIPro-v<版本号>-win64.zip`，然后：
+下载并解压 `CS2DemoVoice-v<版本号>-win64.zip`，然后：
 
-1. 从解压后的完整目录运行 `SwiftDemoUIPro.exe`，不要单独复制 EXE。
+1. 从解压后的完整目录运行 `CS2DemoVoice.exe`，不要单独复制 EXE。
 2. 选择或拖入一个 `.dem`、`.zip` 或 `.dem.zst` 文件。
 3. 确认自动检测到的 CS2 安装目录。
 4. 对大多数下载或第三方 Demo，请保持 **TrueView 预测**关闭；只有确认录像支持 TrueView 时再启用。
@@ -103,10 +103,4 @@ Swift DemoUI Pro 是一款非官方的 Counter-Strike 2 Demo 与 HLTV 回放客�
 
 项目原创代码使用 [MIT License](LICENSE)。第三方库、字体、游戏资源、名称和商标仍遵循各自条款，详见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 
-## 赞助
-
-如果 Swift DemoUI Pro 对你有帮助，欢迎通过爱发电或 Ko-fi 支持后续开发：
-
-<a href="https://afdian.com/a/nicedayzhu"><img src="launcher/assets/afdian_button.png" alt="在爱发电赞助我" height="46"></a>
-
-[![Support me on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/K6C623WHCQ)
+CS2DemoVoice 基于原作者 **nicedayzhu** 的 [SwiftDemoUIPro](https://github.com/nicedayzhu/SwiftDemoUIPro) 二次开发。

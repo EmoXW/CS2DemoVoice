@@ -1,8 +1,8 @@
 {
-  "name": "swiftdemouipro-hugo-site",
+  "name": "cs2demovoice-hugo-site",
   "version": "0.1.2",
   "private": true,
-  "description": "Swift DemoUI Pro promotional website built with Hugo Blox",
+  "description": "CS2DemoVoice promotional website built with Hugo Blox",
   "scripts": {
     "dev": "hugo server --disableFastRender",
     "build": "hugo --gc --minify",

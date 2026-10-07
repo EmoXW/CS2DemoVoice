@@ -1,12 +1,12 @@
-# Swift DemoUI Pro Developer Guide
+# CS2DemoVoice Developer Guide
 
 [English](DEVELOPMENT.md) | [简体中文](DEVELOPMENT_CN.md) | [Player README](README.md)
 
-This guide contains the technical material for building, testing, packaging, and releasing Swift DemoUI Pro. Player installation and usage are documented in the main [README](README.md).
+This guide contains the technical material for building, testing, packaging, and releasing CS2DemoVoice. Player installation and usage are documented in the main [README](README.md).
 
 ## Architecture
 
-Swift DemoUI Pro has three cooperating components:
+CS2DemoVoice has three cooperating components:
 
 1. A Panorama override that extends Valve's native `huddemocontroller` with recorded-voice controls, parsed speaker status, validated POV switching, and round navigation.
 2. A C++17/Qt 6 Widgets launcher that discovers CS2, accepts `.dem`, `.zip`, and `.dem.zst` files, stages an isolated playback session, starts CS2 with `-insecure`, and restores project-owned changes afterward.
@@ -83,7 +83,7 @@ For a CI-like build that does not require a VPK:
   -SkipVpkCheck
 ```
 
-The script tests and builds the Rust voice indexer, configures CMake, builds the launcher and translations, and runs CTest. It does not run `windeployqt`. Therefore, `launcher\build\Release\SwiftDemoUIPro.exe` is a raw build artifact and is not a standalone application; launching it outside a configured Qt development environment may report a missing `Qt6Gui.dll` or platform plugin.
+The script tests and builds the Rust voice indexer, configures CMake, builds the launcher and translations, and runs CTest. It does not run `windeployqt`. Therefore, `launcher\build\Release\CS2DemoVoice.exe` is a raw build artifact and is not a standalone application; launching it outside a configured Qt development environment may report a missing `Qt6Gui.dll` or platform plugin.
 
 For an existing build tree, tests can also be run with:
 
@@ -105,8 +105,8 @@ Build the VPK first, then run:
 Outputs:
 
 ```text
-launcher\package\SwiftDemoUIPro-v<version>\SwiftDemoUIPro.exe
-launcher\package\SwiftDemoUIPro-v<version>-win64.zip
+launcher\package\CS2DemoVoice-v<version>\CS2DemoVoice.exe
+launcher\package\CS2DemoVoice-v<version>-win64.zip
 ```
 
 Packaging uses `windeployqt`. The output must contain the launcher, `swift-demo-voice-indexer.exe`, Qt runtime DLLs, `platforms\qwindows.dll`, the DemoUI VPK, translations, README files, the project license, third-party notices, and dependency license texts. The player package does not contain or require Valve's ResourceCompiler, the Workshop Tools DLC, or VPKEdit. For end-to-end testing, run the EXE from the unpacked version directory and keep the directory intact.
@@ -141,7 +141,7 @@ GitHub Actions runs portable Panorama, Rust, and Qt tests on Windows Server 2022
 - Update translation sources after configuring CMake:
 
   ```powershell
-  cmake --build .\launcher\build --target SwiftDemoUIPro_lupdate --config Release
+  cmake --build .\launcher\build --target CS2DemoVoice_lupdate --config Release
   ```
 
 - Translate every new unfinished entry in `launcher/translations/swift_demoui_pro_zh_CN.ts`.
@@ -177,8 +177,8 @@ The working tree must be clean before building a release candidate because the s
 This runs both test suites, rebuilds the VPK, builds/tests/packages the launcher, creates a Git source archive, and writes:
 
 ```text
-release\v<version>\SwiftDemoUIPro-v<version>-win64.zip
-release\v<version>\SwiftDemoUIPro-v<version>-source.zip
+release\v<version>\CS2DemoVoice-v<version>-win64.zip
+release\v<version>\CS2DemoVoice-v<version>-source.zip
 release\v<version>\swift_demo_menu_override-v<version>.vpk
 release\v<version>\update-manifest.json
 release\v<version>\SHA256SUMS.txt
@@ -192,7 +192,7 @@ Initial repository setup:
 
 ```powershell
 gh auth login
-gh repo create nicedayzhu/SwiftDemoUIPro --public --source . --remote origin --push
+gh repo create EmoXW/CS2-DemoVoice --public --source . --remote origin --push
 ```
 
 To publish a complete release:
@@ -210,7 +210,7 @@ Publication updates both version files, creates `v<version>`, rebuilds and tests
 Verify downloaded files with:
 
 ```powershell
-Get-FileHash .\SwiftDemoUIPro-v0.2.0-win64.zip -Algorithm SHA256
+Get-FileHash .\CS2DemoVoice-v0.2.0-win64.zip -Algorithm SHA256
 Get-Content .\SHA256SUMS.txt
 ```
 

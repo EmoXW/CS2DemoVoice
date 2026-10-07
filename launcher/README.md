@@ -1,4 +1,4 @@
-# Swift DemoUI Pro Launcher
+# CS2DemoVoice Launcher
 
 [English](README.md) | [简体中文](README_CN.md) | [Project overview](../README.md)
 
@@ -6,7 +6,7 @@ A lightweight Windows Qt 6 Widgets application that safely installs this project
 
 ## Interface Preview
 
-![Swift DemoUI Pro launcher with Demo and ZIP selection and TrueView compatibility control](../docs/images/launcher-playback-ui.png)
+![CS2DemoVoice launcher with Demo and ZIP selection and TrueView compatibility control](../docs/images/launcher-playback-ui.png)
 
 The launcher keeps the playback workflow on one page: choose a Demo, review the compatibility option, optionally configure advanced launch arguments, start CS2, then restore the temporary session when finished.
 
@@ -35,7 +35,7 @@ After startup, the launcher checks the repository's latest published GitHub Rele
 - A launcher update opens the versioned Windows package in the browser. The running EXE is never replaced in place.
 - A DemoUI-only update downloads the versioned VPK after the player selects it, verifies its SHA-256 digest, and stores it in the user's local application-data directory. It becomes the preferred VPK the next time Demo playback starts.
 
-Release metadata comes from `update-manifest.json`, which tracks launcher and DemoUI versions independently. Older releases without a manifest remain compatible for launcher update detection through their `SwiftDemoUIPro-v<version>-win64.zip` asset name.
+Release metadata comes from `update-manifest.json`, which tracks launcher and DemoUI versions independently. Older releases without a manifest remain compatible for launcher update detection through their `CS2DemoVoice-v<version>-win64.zip` asset name.
 
 Update checks read the public GitHub REST API anonymously and neither require nor store a player's GitHub token. Requests include GitHub's required `User-Agent`, recommended JSON `Accept`, and API-version headers, validate the HTTP status, content type, JSON, timeout, and anonymous rate limit, and retry invalid JSON once.
 
@@ -56,7 +56,7 @@ For a fast CI-like build that does not require the Panorama VPK:
   -SkipVpkCheck
 ```
 
-The script tests/builds `swift-demo-voice-indexer.exe`, configures CMake, builds the launcher and translations, and runs CTest. `-SkipVpkCheck` is only for a non-packaging build. It does not call `windeployqt`, so `launcher\build\Release\SwiftDemoUIPro.exe` depends on the Qt development environment and is not intended to be launched by double-clicking. A missing `Qt6Gui.dll` message means the raw build output was used instead of a deployed package.
+The script tests/builds `swift-demo-voice-indexer.exe`, configures CMake, builds the launcher and translations, and runs CTest. `-SkipVpkCheck` is only for a non-packaging build. It does not call `windeployqt`, so `launcher\build\Release\CS2DemoVoice.exe` depends on the Qt development environment and is not intended to be launched by double-clicking. A missing `Qt6Gui.dll` message means the raw build output was used instead of a deployed package.
 
 ### Create a runnable package
 
@@ -73,15 +73,15 @@ Build the VPK and then package the launcher:
 Package outputs:
 
 ```text
-launcher\package\SwiftDemoUIPro-v<version>\SwiftDemoUIPro.exe
-launcher\package\SwiftDemoUIPro-v<version>-win64.zip
+launcher\package\CS2DemoVoice-v<version>\CS2DemoVoice.exe
+launcher\package\CS2DemoVoice-v<version>-win64.zip
 ```
 
-Run the EXE from the unpacked version directory for local end-to-end testing. The packaging step uses `windeployqt` to collect `Qt6Core.dll`, `Qt6Gui.dll`, `Qt6Network.dll`, `Qt6Widgets.dll`, the Windows TLS backend, and `platforms\qwindows.dll`, but deliberately excludes the standalone VC++ Redistributable installer to keep the release ZIP compact. `SwiftDemoUIPro.exe`, `swift-demo-voice-indexer.exe`, its DLLs/plugins, translations, and `swift_demo_menu_override.vpk` must remain together. Player machines do not need the Workshop Tools DLC, `resourcecompiler.exe`, or VPKEdit.
+Run the EXE from the unpacked version directory for local end-to-end testing. The packaging step uses `windeployqt` to collect `Qt6Core.dll`, `Qt6Gui.dll`, `Qt6Network.dll`, `Qt6Widgets.dll`, the Windows TLS backend, and `platforms\qwindows.dll`, but deliberately excludes the standalone VC++ Redistributable installer to keep the release ZIP compact. `CS2DemoVoice.exe`, `swift-demo-voice-indexer.exe`, its DLLs/plugins, translations, and `swift_demo_menu_override.vpk` must remain together. Player machines do not need the Workshop Tools DLC, `resourcecompiler.exe`, or VPKEdit.
 
 The repository-level `release.ps1` command is for committed release candidates, not ordinary development testing. It refuses a dirty Git working tree because the source archive is generated from `HEAD`.
 
-ZIP support is compiled into `SwiftDemoUIPro.exe` from the vendored miniz 3.1.2 source, so users do not need 7-Zip, PowerShell extraction, or another executable. The package includes `licenses/miniz-MIT.txt`.
+ZIP support is compiled into `CS2DemoVoice.exe` from the vendored miniz 3.1.2 source, so users do not need 7-Zip, PowerShell extraction, or another executable. The package includes `licenses/miniz-MIT.txt`.
 
 Zstandard support is statically compiled into `swift-demo-voice-indexer.exe` through `zstd-rs`; no external `zstd.exe` or runtime DLL is required. The package includes the corresponding MIT and BSD-3-Clause license texts.
 
@@ -116,9 +116,3 @@ The interface embeds the variable Noto Sans SC font to provide consistent Chines
 - The launch flow was informed by the MIT-licensed [drjackild/cs2-demo-opener](https://github.com/drjackild/cs2-demo-opener); none of its replay, parser, web, or source files are included.
 
 See [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt) and the packaged `licenses` directory for the full notices and license texts.
-
-## Support
-
-Support continued development on Afdian: https://afdian.com/a/nicedayzhu
-
-[![Support me on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/K6C623WHCQ)

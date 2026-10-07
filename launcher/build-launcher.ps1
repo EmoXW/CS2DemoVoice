@@ -16,7 +16,7 @@ $version = (Get-Content -Raw -LiteralPath $versionPath).Trim()
 if ($version -notmatch '^\d+\.\d+\.\d+$') {
     throw "VERSION must contain a semantic version such as 1.2.3."
 }
-$packageDir = Join-Path $launcherRoot "package\SwiftDemoUIPro-v$version"
+$packageDir = Join-Path $launcherRoot "package\CS2DemoVoice-v$version"
 
 function Resolve-CMake {
     $command = Get-Command cmake -ErrorAction SilentlyContinue
@@ -102,12 +102,12 @@ if ($Package) {
     }
     New-Item -ItemType Directory -Force -Path $packageDir | Out-Null
 
-    $launcherExe = Get-ChildItem -LiteralPath $buildDir -Recurse -Filter "SwiftDemoUIPro.exe" |
+    $launcherExe = Get-ChildItem -LiteralPath $buildDir -Recurse -Filter "CS2DemoVoice.exe" |
         Where-Object { $_.FullName -notmatch '\\CMakeFiles\\' } |
         Select-Object -First 1
     if (-not $launcherExe) { throw "Built launcher executable was not found." }
 
-    Copy-Item -LiteralPath $launcherExe.FullName -Destination (Join-Path $packageDir "SwiftDemoUIPro.exe")
+    Copy-Item -LiteralPath $launcherExe.FullName -Destination (Join-Path $packageDir "CS2DemoVoice.exe")
     Copy-Item -LiteralPath $voiceIndexer -Destination (Join-Path $packageDir "swift-demo-voice-indexer.exe")
     Copy-Item -LiteralPath $vpk -Destination (Join-Path $packageDir "swift_demo_menu_override.vpk")
     Copy-Item -LiteralPath (Join-Path $launcherRoot "README.md") -Destination (Join-Path $packageDir "README.txt")
@@ -123,7 +123,7 @@ if ($Package) {
     if (-not (Test-Path -LiteralPath $deploy)) { throw "windeployqt.exe was not found in $qt\bin" }
     & $deploy --release --no-compiler-runtime --no-translations --no-opengl-sw --no-system-dxc-compiler `
         --skip-plugin-types generic,imageformats,networkinformation,styles `
-        (Join-Path $packageDir "SwiftDemoUIPro.exe")
+        (Join-Path $packageDir "CS2DemoVoice.exe")
     if ($LASTEXITCODE -ne 0) { throw "windeployqt failed." }
 
     $licenseDir = Join-Path $packageDir "licenses"
@@ -146,10 +146,10 @@ if ($Package) {
     $zstdLicense = Join-Path $projectRoot "tools\voice-indexer\ZSTD_LICENSE-BSD-3-Clause.txt"
     Copy-Item -LiteralPath $zstdLicense -Destination (Join-Path $licenseDir "zstd-BSD-3-Clause.txt")
 
-    $zipPath = Join-Path $launcherRoot "package\SwiftDemoUIPro-v$version-win64.zip"
+    $zipPath = Join-Path $launcherRoot "package\CS2DemoVoice-v$version-win64.zip"
     if (Test-Path -LiteralPath $zipPath) { Remove-Item -LiteralPath $zipPath -Force }
     Compress-Archive -LiteralPath $packageDir -DestinationPath $zipPath -CompressionLevel Optimal
     Write-Host "Packaged launcher: $zipPath"
 }
 
-Write-Host "Swift DemoUI Pro build complete."
+Write-Host "CS2DemoVoice build complete."

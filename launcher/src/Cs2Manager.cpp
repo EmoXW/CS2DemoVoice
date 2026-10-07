@@ -841,7 +841,7 @@ LauncherResult Cs2Manager::installOverride(const Cs2Paths &paths, const QString 
 QString Cs2Manager::buildDemoCfg(bool trueViewEnabled)
 {
     return QStringLiteral(
-        "echo \"Swift DemoUI Pro session\"\n"
+        "echo \"CS2DemoVoice session\"\n"
         "demo_ui_mode 2\n"
         "cl_demo_predict %1\n"
         "tv_listen_voice_indices -1\n"
@@ -900,7 +900,7 @@ LauncherResult Cs2Manager::prepareDemoSession(const Cs2Paths &paths, const QStri
         const QString indexer = findBundledVoiceIndexer();
         if (indexer.isEmpty()) {
             return LauncherResult::failure(
-                QCoreApplication::translate("Cs2Manager", "The bundled Zstandard Demo decoder was not found. Reinstall Swift DemoUI Pro."));
+                QCoreApplication::translate("Cs2Manager", "The bundled Zstandard Demo decoder was not found. Reinstall CS2DemoVoice."));
         }
         const LauncherResult staged = runSessionTool(
             indexer,
@@ -949,7 +949,7 @@ LauncherResult Cs2Manager::prepareVoiceStatusData(const Cs2Paths &paths)
     const QString indexer = findBundledVoiceIndexer();
     if (indexer.isEmpty()) {
         return LauncherResult::failure(
-            QCoreApplication::translate("Cs2Manager", "The Demo voice indexer was not found. Rebuild or reinstall Swift DemoUI Pro."));
+            QCoreApplication::translate("Cs2Manager", "The Demo voice indexer was not found. Rebuild or reinstall CS2DemoVoice."));
     }
     const QString stagedDemo = stagedDemoPath(paths);
     if (!QFileInfo::exists(stagedDemo)) {

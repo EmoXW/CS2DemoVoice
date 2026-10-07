@@ -1,4 +1,4 @@
-module github.com/nicedayzhu/SwiftDemoUIPro/site
+module github.com/EmoXW/CS2-DemoVoice/site
 
 go 1.24
 

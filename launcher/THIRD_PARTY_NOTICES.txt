@@ -1,9 +1,9 @@
-Swift DemoUI Pro - Third-Party Notices
+CS2DemoVoice - Third-Party Notices
 =========================================
 
 Project license
 ---------------
-Original Swift DemoUI Pro source code is licensed under the MIT License.
+Original CS2DemoVoice source code is licensed under the MIT License.
 A copy of that license is included as LICENSE.txt in packaged releases.
 Third-party components and materials remain under their own terms.
 

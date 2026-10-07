@@ -344,7 +344,7 @@ private:
 LauncherWindow::LauncherWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    setWindowTitle(QStringLiteral("Swift DemoUI Pro"));
+    setWindowTitle(QStringLiteral("CS2DemoVoice"));
     setWindowIcon(QIcon(makeLogo()));
     setMinimumSize(920, 640);
     resize(1000, 720);
@@ -393,9 +393,9 @@ LauncherWindow::LauncherWindow(QWidget *parent)
             UpdateInfo preview;
             preview.valid = true;
             preview.launcher.version = QStringLiteral("0.2.0");
-            preview.launcher.url = QStringLiteral("https://github.com/nicedayzhu/SwiftDemoUIPro/releases/latest");
+            preview.launcher.url = QStringLiteral("https://github.com/EmoXW/CS2-DemoVoice/releases/latest");
             preview.menu.version = QStringLiteral("0.1.1");
-            preview.menu.url = QStringLiteral("https://github.com/nicedayzhu/SwiftDemoUIPro/releases/latest");
+            preview.menu.url = QStringLiteral("https://github.com/EmoXW/CS2-DemoVoice/releases/latest");
             handleUpdateCheck(preview);
         });
     } else if (!qApp->property("disableAutoUpdateCheck").toBool()) {
@@ -426,7 +426,7 @@ void LauncherWindow::buildInterface()
     brand->addWidget(brandLogo);
     auto *brandCopy = new QVBoxLayout;
     brandCopy->setSpacing(1);
-    auto *brandTitle = new QLabel(QStringLiteral("Swift DemoUI Pro"), sidebar);
+    auto *brandTitle = new QLabel(QStringLiteral("CS2DemoVoice"), sidebar);
     brandTitle->setObjectName(QStringLiteral("BrandTitle"));
     auto *brandSubtitle = new QLabel(tr("CS2 Demo Tool"), sidebar);
     brandSubtitle->setObjectName(QStringLiteral("BrandSubtitle"));
@@ -498,7 +498,7 @@ void LauncherWindow::buildInterface()
     });
     sideLayout->addWidget(languageCombo_);
 
-    auto *version = new QLabel(tr("Swift DemoUI Pro · %1").arg(qApp->applicationVersion()), sidebar);
+    auto *version = new QLabel(tr("CS2DemoVoice · %1").arg(qApp->applicationVersion()), sidebar);
     version->setObjectName(QStringLiteral("SidebarFooter"));
     version->setAlignment(Qt::AlignCenter);
     sideLayout->addSpacing(8);
@@ -698,7 +698,7 @@ void LauncherWindow::buildInterface()
 
     auto *menuTitle = new QLabel(tr("DemoUI Management"), menuPage);
     menuTitle->setObjectName(QStringLiteral("PageTitle"));
-    auto *menuSubtitle = new QLabel(tr("Manage the CS2 path and Swift DemoUI component"), menuPage);
+    auto *menuSubtitle = new QLabel(tr("Manage the CS2 path and CS2DemoVoice component"), menuPage);
     menuSubtitle->setObjectName(QStringLiteral("PageSubtitle"));
     menu->addWidget(menuTitle);
     menu->addWidget(menuSubtitle);
@@ -818,7 +818,7 @@ void LauncherWindow::buildInterface()
     brandRow->addWidget(stageLogo);
     auto *stageBrandCopy = new QVBoxLayout;
     stageBrandCopy->setSpacing(4);
-    auto *stageProduct = new QLabel(QStringLiteral("Swift DemoUI Pro"), aboutStage);
+    auto *stageProduct = new QLabel(QStringLiteral("CS2DemoVoice"), aboutStage);
     stageProduct->setObjectName(QStringLiteral("StageProduct"));
     auto *stageDescription = new QLabel(tr("Counter-Strike 2 DemoUI and playback tool"), aboutStage);
     stageDescription->setObjectName(QStringLiteral("StageDescription"));
@@ -847,27 +847,21 @@ void LauncherWindow::buildInterface()
     auto *creator = new QHBoxLayout(creatorPanel);
     creator->setContentsMargins(22, 0, 0, 0);
     creator->setSpacing(12);
-    auto *creatorIdentity = new QHBoxLayout;
-    creatorIdentity->setSpacing(12);
     auto *avatar = new QLabel(creatorPanel);
-    const QPixmap avatarSource(QStringLiteral(":/images/author_avatar.bmp"));
-    avatar->setPixmap(avatarSource.isNull()
-            ? makeAuthorFallback(58)
-            : makeCircularPixmap(avatarSource, 58));
+    avatar->setPixmap(makeLogo().scaled(58, 58, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     avatar->setFixedSize(58, 58);
-    creatorIdentity->addWidget(avatar, 0, Qt::AlignVCenter);
+    creator->addWidget(avatar, 0, Qt::AlignVCenter);
     auto *identityCopy = new QVBoxLayout;
     identityCopy->setSpacing(4);
     identityCopy->addStretch(1);
     auto *creatorCaption = new QLabel(tr("CREATOR"), creatorPanel);
     creatorCaption->setObjectName(QStringLiteral("CreatorCaption"));
     identityCopy->addWidget(creatorCaption);
-    auto *creatorName = new QLabel(QStringLiteral("nicedayzhu"), creatorPanel);
+    auto *creatorName = new QLabel(QStringLiteral("EmoXW"), creatorPanel);
     creatorName->setObjectName(QStringLiteral("CreatorName"));
     identityCopy->addWidget(creatorName);
     identityCopy->addStretch(1);
-    creatorIdentity->addLayout(identityCopy, 1);
-    creator->addLayout(creatorIdentity, 1);
+    creator->addLayout(identityCopy, 1);
     stageTop->addWidget(creatorPanel);
     stage->addLayout(stageTop, 1);
 
@@ -975,26 +969,12 @@ void LauncherWindow::buildInterface()
     auto *linkCards = new QHBoxLayout;
     linkCards->setSpacing(10);
     linkCards->addWidget(makeLinkButton(
-        tr("Official website"),
-        tr("Downloads, guides, and updates"),
-        QStringLiteral("https://nicedayzhu.github.io/SwiftDemoUIPro/"),
-        Glyph::Website,
-        QStringLiteral("website"),
-        QColor(QStringLiteral("#347fd8"))), 1);
-    linkCards->addWidget(makeLinkButton(
         QStringLiteral("GitHub"),
         tr("Source code and issues"),
-        QStringLiteral("https://github.com/nicedayzhu/SwiftDemoUIPro"),
+        QStringLiteral("https://github.com/EmoXW/CS2-DemoVoice"),
         Glyph::Code,
         QStringLiteral("github"),
         QColor(QStringLiteral("#31363d"))), 1);
-    linkCards->addWidget(makeLinkButton(
-        tr("Bilibili"),
-        tr("Videos and tutorials"),
-        QStringLiteral("https://space.bilibili.com/1405728"),
-        Glyph::Video,
-        QStringLiteral("bilibili"),
-        QColor(QStringLiteral("#e85b87"))), 1);
     about->addLayout(linkCards);
 
     auto *supportCard = new QFrame(aboutPage);
@@ -1003,73 +983,35 @@ void LauncherWindow::buildInterface()
     auto *support = new QHBoxLayout(supportCard);
     support->setContentsMargins(16, 12, 14, 12);
     support->setSpacing(12);
-
     auto *supportMark = new QLabel(QStringLiteral("♥"), supportCard);
     supportMark->setObjectName(QStringLiteral("SupportMark"));
     supportMark->setAlignment(Qt::AlignCenter);
     supportMark->setFixedSize(40, 40);
-    supportMark->setAttribute(Qt::WA_TransparentForMouseEvents);
-    support->addWidget(supportMark, 0, Qt::AlignVCenter);
-
-    const QString supportDescriptionText =
-        tr("Help fund continued development and maintenance");
+    support->addWidget(supportMark);
     auto *supportCopy = new QVBoxLayout;
     supportCopy->setSpacing(3);
     auto *supportTitle = new QLabel(tr("Support the project"), supportCard);
     supportTitle->setObjectName(QStringLiteral("SupportTitle"));
-    auto *supportDescription = new QLabel(supportDescriptionText, supportCard);
+    auto *supportDescription = new QLabel(tr("Help fund continued development and maintenance"), supportCard);
     supportDescription->setObjectName(QStringLiteral("SupportDescription"));
     supportDescription->setWordWrap(true);
     supportCopy->addWidget(supportTitle);
     supportCopy->addWidget(supportDescription);
     support->addLayout(supportCopy, 1);
-
-    const QPixmap afdianIconImage(QStringLiteral(":/images/afdian_icon.png"));
-    const QPixmap kofiIconImage(QStringLiteral(":/images/kofi_icon.png"));
-    const auto makeSupportButton = [supportCard, supportDescriptionText](
-                                       const QString &text,
-                                       const QString &accessibleName,
-                                       const QString &url,
-                                       const QPixmap &iconImage,
-                                       const QString &provider,
-                                       const QColor &fallbackColor) {
-        auto *button = new QPushButton(text, supportCard);
-        button->setObjectName(QStringLiteral("SupportPlatformButton"));
-        button->setProperty("provider", provider);
-        button->setAccessibleName(accessibleName);
-        button->setAccessibleDescription(supportDescriptionText);
-        button->setToolTip(accessibleName);
-        button->setIcon(iconImage.isNull()
-                ? makeGlyphIcon(Glyph::Coffee, fallbackColor)
-                : QIcon(iconImage));
-        button->setIconSize(QSize(24, 24));
-        button->setFixedSize(126, 44);
-        button->setCursor(Qt::PointingHandCursor);
-        button->setFocusPolicy(Qt::StrongFocus);
-        QObject::connect(button, &QPushButton::clicked, button, [url]() {
-            QDesktopServices::openUrl(QUrl(url));
-        });
-        return button;
-    };
-
-    auto *supportActions = new QHBoxLayout;
-    supportActions->setSpacing(8);
-    supportActions->addWidget(makeSupportButton(
-        tr("Afdian"),
-        tr("Support on Afdian"),
-        QStringLiteral("https://afdian.com/a/nicedayzhu"),
-        afdianIconImage,
-        QStringLiteral("afdian"),
-        QColor(QStringLiteral("#946ce6"))));
-    supportActions->addWidget(makeSupportButton(
-        QStringLiteral("Ko-fi"),
-        tr("Support on Ko-fi"),
-        QStringLiteral("https://ko-fi.com/K6C623WHCQ"),
-        kofiIconImage,
-        QStringLiteral("kofi"),
-        QColor(QStringLiteral("#ff5e3a"))));
-    support->addLayout(supportActions);
+    auto *supportButton = new QPushButton(tr("Sponsor"), supportCard);
+    supportButton->setObjectName(QStringLiteral("SupportPlatformButton"));
+    supportButton->setIcon(QIcon(QStringLiteral(":/images/sponsor_icon.ico")));
+    supportButton->setIconSize(QSize(24, 24));
+    supportButton->setFixedSize(126, 44);
+    supportButton->setCursor(Qt::PointingHandCursor);
+    supportButton->setAccessibleName(tr("Sponsor"));
+    supportButton->setToolTip(QStringLiteral("https://beg.emoxw.cn"));
+    connect(supportButton, &QPushButton::clicked, this, []() {
+        QDesktopServices::openUrl(QUrl(QStringLiteral("https://beg.emoxw.cn")));
+    });
+    support->addWidget(supportButton);
     about->addWidget(supportCard);
+
     about->addStretch(1);
     pages_->addWidget(aboutPage);
 

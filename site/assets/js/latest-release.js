@@ -1,11 +1,11 @@
 (() => {
-  const repositoryUrl = 'https://github.com/nicedayzhu/SwiftDemoUIPro';
-  const releaseUrl = 'https://github.com/nicedayzhu/SwiftDemoUIPro/releases/latest';
+  const repositoryUrl = 'https://github.com/EmoXW/CS2-DemoVoice';
+  const releaseUrl = 'https://github.com/EmoXW/CS2-DemoVoice/releases/latest';
   const releasesUrl = `${repositoryUrl}/releases`;
-  const repositoryApiUrl = 'https://api.github.com/repos/nicedayzhu/SwiftDemoUIPro';
+  const repositoryApiUrl = 'https://api.github.com/repos/EmoXW/CS2-DemoVoice';
   const releasesApiUrl = `${repositoryApiUrl}/releases?per_page=100`;
   const versionPattern = /^v?\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/;
-  const windowsPackagePattern = /^SwiftDemoUIPro-v\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?-win64\.zip$/i;
+  const windowsPackagePattern = /^CS2DemoVoice-v\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?-win64\.zip$/i;
   const language = document.documentElement.lang.toLowerCase().startsWith('zh') ? 'zh' : 'en';
   const labels = {
     zh: {

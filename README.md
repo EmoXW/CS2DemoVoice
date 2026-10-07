@@ -1,13 +1,13 @@
-# Swift DemoUI Pro
+# CS2DemoVoice
 
 [English](README.md) | [简体中文](README_CN.md)
 
-[Official website](https://nicedayzhu.github.io/SwiftDemoUIPro/) · [Download latest release](https://github.com/nicedayzhu/SwiftDemoUIPro/releases/latest)
+[Official website](https://github.com/EmoXW/CS2-DemoVoice) · [Download latest release](https://github.com/EmoXW/CS2-DemoVoice/releases/latest)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Platform: Windows](https://img.shields.io/badge/Platform-Windows-0078D6.svg)](#quick-start)
 
-Swift DemoUI Pro is an unofficial, client-side enhancement for Counter-Strike 2 Demo and HLTV playback. Its Windows launcher opens `.dem` files, downloaded `.zip` archives, and FACEIT `.dem.zst` downloads, while the in-game panel adds recorded-voice controls, one-click POV switching, and round navigation without replacing Valve's native DemoUI.
+CS2DemoVoice is an unofficial, client-side enhancement for Counter-Strike 2 Demo and HLTV playback. Its Windows launcher opens `.dem` files, downloaded `.zip` archives, and FACEIT `.dem.zst` downloads, while the in-game panel adds recorded-voice controls, one-click POV switching, and round navigation without replacing Valve's native DemoUI.
 
 No SwiftlyS2 installation, server plugin, Counter-Strike 2 Workshop Tools DLC, Workshop item, or manual archive extraction is required. The release package contains the voice-index compiler, Zstandard decoder, and session VPK writer it needs at runtime.
 
@@ -18,13 +18,13 @@ No SwiftlyS2 installation, server plugin, Counter-Strike 2 Workshop Tools DLC, W
 
 ### Windows launcher
 
-![Swift DemoUI Pro launcher with Demo and ZIP selection and TrueView compatibility control](docs/images/launcher-playback-ui.png)
+![CS2DemoVoice launcher with Demo and ZIP selection and TrueView compatibility control](docs/images/launcher-playback-ui.png)
 
 Select or drag in a Demo, ZIP archive, or `.dem.zst` download, confirm the detected CS2 installation, and start playback. The launcher remembers the interface language, TrueView preference, and optional advanced launch arguments, then removes its temporary files after playback.
 
 ### In-game DemoUI
 
-![Swift DemoUI Pro player voice, POV, and round navigation panel during CS2 Demo playback](docs/images/demo-voice-ui.png)
+![CS2DemoVoice player voice, POV, and round navigation panel during CS2 Demo playback](docs/images/demo-voice-ui.png)
 
 The added panel keeps the native timeline and playback controls available while providing per-player recorded voice, POV selection, and direct round navigation. During launcher-started playback, a native-inspired lower-left HUD also shows the avatar and name of each player whose recorded voice packets are active at the current Demo tick.
 
@@ -46,9 +46,9 @@ The added panel keeps the native timeline and playback controls available while 
 
 ## Quick Start
 
-Download and extract `SwiftDemoUIPro-v<version>-win64.zip`, then:
+Download and extract `CS2DemoVoice-v<version>-win64.zip`, then:
 
-1. Run `SwiftDemoUIPro.exe` from the extracted folder. Keep the whole package together.
+1. Run `CS2DemoVoice.exe` from the extracted folder. Keep the whole package together.
 2. Select or drag in a `.dem`, `.zip`, or `.dem.zst` file.
 3. Confirm the automatically detected CS2 installation.
 4. Leave **TrueView prediction** disabled for most downloaded or third-party Demos. Enable it only when the recording is known to support TrueView.
@@ -103,10 +103,4 @@ Issues and pull requests are welcome. Before contributing, read the [Developer G
 
 Original project code is available under the [MIT License](LICENSE). Third-party libraries, fonts, game resources, names, and trademarks remain under their respective terms; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
-## Support
-
-If Swift DemoUI Pro is useful to you, you can support continued development on Afdian or Ko-fi:
-
-<a href="https://afdian.com/a/nicedayzhu"><img src="launcher/assets/afdian_button.png" alt="Support me on Afdian" height="46"></a>
-
-[![Support me on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/K6C623WHCQ)
+CS2DemoVoice is based on [Swift DemoUI Pro](https://github.com/nicedayzhu/SwiftDemoUIPro), originally developed by **nicedayzhu**.

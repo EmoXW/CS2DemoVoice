@@ -2,17 +2,17 @@ hugoblox:
   schema: "2.0"
 
   identity:
-    name: Swift DemoUI Pro
-    organization: Swift DemoUI Pro
+    name: CS2DemoVoice
+    organization: CS2DemoVoice
     type: organization
     tagline: 让 CS2 Demo 回放听得见，也看得懂。
     description: >-
-      Swift DemoUI Pro 是免费的 Counter-Strike 2 Demo 回放增强工具，支持录制语音控制、
+      CS2DemoVoice 是免费的 Counter-Strike 2 Demo 回放增强工具，支持录制语音控制、
       说话玩家头像、POV 切换、回合跳转，以及 .dem、.zip 和 .dem.zst 文件。
     social:
       links:
         - icon: brands/github
-          url: https://github.com/nicedayzhu/SwiftDemoUIPro
+          url: https://github.com/EmoXW/CS2-DemoVoice
 
   theme:
     mode: dark
@@ -53,7 +53,7 @@ hugoblox:
     cta:
       enable: false
       text: 下载最新版
-      url: https://github.com/nicedayzhu/SwiftDemoUIPro/releases/latest
+      url: https://github.com/EmoXW/CS2-DemoVoice/releases/latest
 
   footer:
     style: minimal
@@ -73,7 +73,7 @@ hugoblox:
       allow_commercial: true
 
   seo:
-    title: Swift DemoUI Pro — CS2 Demo 回放增强工具
+    title: CS2DemoVoice — CS2 Demo 回放增强工具
 
   content:
     math:
@@ -96,7 +96,7 @@ hugoblox:
 
   repository:
     enable: true
-    url: https://github.com/nicedayzhu/SwiftDemoUIPro
+    url: https://github.com/EmoXW/CS2-DemoVoice
     branch: main
     content_dir: site/content
 

@@ -13,7 +13,7 @@ if(NOT SWIFT_DEMOUI_MENU_VERSION MATCHES "^[0-9]+\\.[0-9]+\\.[0-9]+$")
     message(FATAL_ERROR "../MENU_VERSION must contain a semantic version such as 1.2.3")
 endif()
 
-project(SwiftDemoUIPro VERSION "${SWIFT_DEMOUI_VERSION}" LANGUAGES C CXX)
+project(CS2DemoVoice VERSION "${SWIFT_DEMOUI_VERSION}" LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -87,7 +87,7 @@ target_link_libraries(SwiftDemoLauncher PRIVATE
     Qt6::Gui
     Qt6::Widgets
 )
-set_target_properties(SwiftDemoLauncher PROPERTIES OUTPUT_NAME "SwiftDemoUIPro")
+set_target_properties(SwiftDemoLauncher PROPERTIES OUTPUT_NAME "CS2DemoVoice")
 qt_add_resources(SwiftDemoLauncher "embedded_fonts"
     PREFIX "/fonts"
     BASE "${CMAKE_CURRENT_SOURCE_DIR}/assets/fonts"

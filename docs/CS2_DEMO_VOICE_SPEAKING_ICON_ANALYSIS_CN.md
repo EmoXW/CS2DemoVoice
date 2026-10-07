@@ -1,4 +1,4 @@
-# CS2 Demo 语音说话状态：逆向结论与 SwiftDemoUIPro 实现
+# CS2 Demo 语音说话状态：逆向结论与 CS2DemoVoice 实现
 
 > 更新日期：2026-08-08
 >
@@ -27,7 +27,7 @@ demo 中的语音消息足以让游戏解码并播放声音，也会影响 speak
 
 仅修改 demo 消息无法可靠补齐这个客户端运行时音量状态。MulNX_CS2 的做法也印证了这一点：它通过修改本地客户端逻辑绕过 demo 分支，而不是通过构造某种特殊 demo 消息恢复原生状态。
 
-SwiftDemoUIPro 最终采用独立方案：
+CS2DemoVoice 最终采用独立方案：
 
 1. 播放前离线解析 demo 中的 `SvcVoiceData`；
 2. 生成按玩家槽位组织的说话时间索引；
@@ -71,7 +71,7 @@ flowchart LR
 
 [MulNX_CS2](https://github.com/Co1Swet/MulNX_CS2) 的相关实现会在本地修改客户端对 demo 状态的判断，使语音状态沿另一条客户端路径处理。它证明了问题位于客户端运行时分支，而不是 demo 缺少某个简单标志。
 
-该方案对定位原因很有价值，但不适合 SwiftDemoUIPro：
+该方案对定位原因很有价值，但不适合 CS2DemoVoice：
 
 - 需要修改或挂钩 `client.dll`；
 - 对游戏更新敏感；
@@ -221,14 +221,14 @@ Game csgo
 2. 将 demo 复制到受控暂存位置；
 3. 调用内置 voice sidecar 解析 demo；
 4. sidecar 在内存中生成索引、VJS_C 和 session VPK；
-5. 写入仅包含 SwiftDemoUIPro SearchPath 的启动配置；
+5. 写入仅包含 CS2DemoVoice SearchPath 的启动配置；
 6. 启动 CS2 并播放暂存 demo。
 
 启动器只管理自己拥有的资源：
 
 - `swift_demo_voice_session.vpk`；
 - `swift_demo_menu_override.vpk`；
-- SwiftDemoUIPro 专用暂存与配置；
+- CS2DemoVoice 专用暂存与配置；
 - 旧版本遗留的 `swift_demo_voice_session` 松散目录。
 
 卸载或清理时不会删除用户源 demo，也不会覆盖或修改 CS2 原始 VPK、DLL。
@@ -310,4 +310,4 @@ Game csgo
 
 “仅修改 demo，恢复当前 CS2 原生说话图标”在已验证的消息模型下不可行：demo 可以携带并播放语音，却不能表达原生 HUD 所需的完整客户端实时音量状态。
 
-SwiftDemoUIPro 的现有实现绕开了这一缺口，同时保留了用户真正需要的体验：播放 demo 时能准确看到谁正在说话。它不修改 DLL、不破坏 demo，且诊断、部署和清理均可控，是目前更稳定、可维护的方案。
+CS2DemoVoice 的现有实现绕开了这一缺口，同时保留了用户真正需要的体验：播放 demo 时能准确看到谁正在说话。它不修改 DLL、不破坏 demo，且诊断、部署和清理均可控，是目前更稳定、可维护的方案。

@@ -1,12 +1,12 @@
-# Swift DemoUI Pro 开发者指南
+# CS2DemoVoice 开发者指南
 
 [English](DEVELOPMENT.md) | [简体中文](DEVELOPMENT_CN.md) | [玩家 README](README_CN.md)
 
-本文档集中说明 Swift DemoUI Pro 的架构、构建、测试、打包和发布流程。玩家安装与使用方法请阅读主 [README](README_CN.md)。
+本文档集中说明 CS2DemoVoice 的架构、构建、测试、打包和发布流程。玩家安装与使用方法请阅读主 [README](README_CN.md)。
 
 ## 项目架构
 
-Swift DemoUI Pro 由三个协作组件组成：
+CS2DemoVoice 由三个协作组件组成：
 
 1. Panorama override：扩展 Valve 原生 `huddemocontroller`，加入已录制语音控制、解析后的说话状态、经过核验的 POV 切换和回合导航。
 2. C++17/Qt 6 Widgets 启动器：检测 CS2，接收 `.dem`、`.zip` 和 `.dem.zst` 文件，准备独立回放会话，使用 `-insecure` 启动 CS2，并在结束后恢复本项目产生的修改。
@@ -83,7 +83,7 @@ dist\swift_demo_menu_override.vpk
   -SkipVpkCheck
 ```
 
-脚本会测试并编译 Rust 语音索引器、配置 CMake、编译启动器和翻译，并运行 CTest。它不会执行 `windeployqt`，因此 `launcher\build\Release\SwiftDemoUIPro.exe` 只是裸编译产物，并非可独立运行的程序；在没有 Qt 开发环境时启动，可能提示缺少 `Qt6Gui.dll` 或平台插件。
+脚本会测试并编译 Rust 语音索引器、配置 CMake、编译启动器和翻译，并运行 CTest。它不会执行 `windeployqt`，因此 `launcher\build\Release\CS2DemoVoice.exe` 只是裸编译产物，并非可独立运行的程序；在没有 Qt 开发环境时启动，可能提示缺少 `Qt6Gui.dll` 或平台插件。
 
 已有构建目录也可以单独运行：
 
@@ -105,8 +105,8 @@ ctest --test-dir .\launcher\build -C Release --output-on-failure
 输出：
 
 ```text
-launcher\package\SwiftDemoUIPro-v<版本号>\SwiftDemoUIPro.exe
-launcher\package\SwiftDemoUIPro-v<版本号>-win64.zip
+launcher\package\CS2DemoVoice-v<版本号>\CS2DemoVoice.exe
+launcher\package\CS2DemoVoice-v<版本号>-win64.zip
 ```
 
 打包过程使用 `windeployqt`。产物必须包含启动器、`swift-demo-voice-indexer.exe`、Qt 运行库、`platforms\qwindows.dll`、DemoUI VPK、翻译、README、项目许可证、第三方说明和依赖许可文本。玩家端不携带也不依赖 Valve ResourceCompiler、Workshop Tools DLC 或 VPKEdit。本地端到端测试请运行展开版本目录中的 EXE，并保持整个目录结构完整。
@@ -141,7 +141,7 @@ GitHub Actions 会在 Windows Server 2022 上运行可移植的 Panorama、Rust 
 - 配置 CMake 后更新翻译源：
 
   ```powershell
-  cmake --build .\launcher\build --target SwiftDemoUIPro_lupdate --config Release
+  cmake --build .\launcher\build --target CS2DemoVoice_lupdate --config Release
   ```
 
 - 翻译 `launcher/translations/swift_demoui_pro_zh_CN.ts` 中每个新增的 unfinished 条目。
@@ -177,8 +177,8 @@ Release 源码包从 `HEAD` 生成，因此创建候选版本前 Git 工作区�
 该命令会运行两组测试，重新构建 VPK，编译、测试并打包启动器，创建 Git 源码归档，并输出：
 
 ```text
-release\v<版本号>\SwiftDemoUIPro-v<版本号>-win64.zip
-release\v<版本号>\SwiftDemoUIPro-v<版本号>-source.zip
+release\v<版本号>\CS2DemoVoice-v<版本号>-win64.zip
+release\v<版本号>\CS2DemoVoice-v<版本号>-source.zip
 release\v<版本号>\swift_demo_menu_override-v<版本号>.vpk
 release\v<版本号>\update-manifest.json
 release\v<版本号>\SHA256SUMS.txt
@@ -192,7 +192,7 @@ release\v<版本号>\SHA256SUMS.txt
 
 ```powershell
 gh auth login
-gh repo create nicedayzhu/SwiftDemoUIPro --public --source . --remote origin --push
+gh repo create EmoXW/CS2-DemoVoice --public --source . --remote origin --push
 ```
 
 发布完整版本：
@@ -210,7 +210,7 @@ gh repo create nicedayzhu/SwiftDemoUIPro --public --source . --remote origin --p
 下载后可这样核对文件：
 
 ```powershell
-Get-FileHash .\SwiftDemoUIPro-v0.2.0-win64.zip -Algorithm SHA256
+Get-FileHash .\CS2DemoVoice-v0.2.0-win64.zip -Algorithm SHA256
 Get-Content .\SHA256SUMS.txt
 ```
 

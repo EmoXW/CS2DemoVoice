@@ -1,30 +1,30 @@
 ---
-title: Swift DemoUI Pro
+title: CS2DemoVoice
 type: landing
 
 sections:
   - block: hero
     id: top
     content:
-      eyebrow: SWIFT DEMOUI PRO / WINDOWS X64
+      eyebrow: CS2DEMOVOICE / WINDOWS X64
       title: Voice controls for CS2 demo playback.
       text: >-
         Keep the native DemoUI and add the controls it is missing: choose who you hear, identify the
         current speaker, switch POV, and move to a recorded round start.
       primary_action:
         text: Download latest
-        url: https://github.com/nicedayzhu/SwiftDemoUIPro/releases/latest
+        url: https://github.com/EmoXW/CS2-DemoVoice/releases/latest
         icon: arrow-down-tray
         style: solid
       secondary_action:
         text: View on GitHub
-        url: https://github.com/nicedayzhu/SwiftDemoUIPro
+        url: https://github.com/EmoXW/CS2-DemoVoice
         icon: brands/github
         style: text
       media:
         type: image
         src: demo-voice-hero.png
-        alt: Swift DemoUI Pro voice panel alongside CS2 demo playback
+        alt: CS2DemoVoice voice panel alongside CS2 demo playback
     design:
       layout: split-left
       no_padding: true
@@ -50,7 +50,7 @@ sections:
           image: voice-panel-en.webp
           button:
             text: In-game panel guide
-            url: https://github.com/nicedayzhu/SwiftDemoUIPro#using-the-in-game-panel
+            url: https://github.com/EmoXW/CS2-DemoVoice#using-the-in-game-panel
         - title: Choose a file, start playback
           text: >-
             This is the Windows launcher included with the release. Choose a `.dem`, `.zip`, or `.dem.zst`; it validates
@@ -63,7 +63,7 @@ sections:
           image: launcher-en.png
           button:
             text: Full usage guide
-            url: https://github.com/nicedayzhu/SwiftDemoUIPro#quick-start
+            url: https://github.com/EmoXW/CS2-DemoVoice#quick-start
     design:
       css_class: "swift-showcase"
 

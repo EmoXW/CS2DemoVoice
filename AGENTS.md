@@ -1,10 +1,10 @@
-# Swift DemoUI Pro Agent Guide
+# CS2DemoVoice Agent Guide
 
-This file applies to the entire repository. It is the operational reference for coding agents working on Swift DemoUI Pro. Keep it aligned with the scripts and architecture whenever those change.
+This file applies to the entire repository. It is the operational reference for coding agents working on CS2DemoVoice. Keep it aligned with the scripts and architecture whenever those change.
 
 ## Project Background
 
-Swift DemoUI Pro is an unofficial, client-side enhancement for Counter-Strike 2 Demo and HLTV playback. It has two cooperating parts:
+CS2DemoVoice is an unofficial, client-side enhancement for Counter-Strike 2 Demo and HLTV playback. It has two cooperating parts:
 
 1. A Panorama override that extends Valve's native `huddemocontroller` with recorded-voice controls, player POV switching, and direct round navigation.
 2. A native Qt 6 Widgets launcher that detects CS2, accepts `.dem` files or ZIP archives, installs the override for an isolated playback session, launches CS2 with `-insecure`, and removes the temporary changes afterward.
@@ -170,7 +170,7 @@ Use this for CI-like launcher work:
 
 The script configures CMake with tests enabled, builds the requested configuration, and runs CTest. `-SkipVpkCheck` is for a non-packaging build only.
 
-Do not tell users to double-click `launcher/build/Release/SwiftDemoUIPro.exe`. That directory is a raw build tree and does not contain the Qt runtime deployed by `windeployqt`; launching it outside a configured Qt environment can fail with a missing `Qt6Gui.dll` or platform-plugin error.
+Do not tell users to double-click `launcher/build/Release/CS2DemoVoice.exe`. That directory is a raw build tree and does not contain the Qt runtime deployed by `windeployqt`; launching it outside a configured Qt environment can fail with a missing `Qt6Gui.dll` or platform-plugin error.
 
 ### Build and package the launcher
 
@@ -186,8 +186,8 @@ Build the VPK first, then run:
 Output:
 
 ```text
-launcher\package\SwiftDemoUIPro-v<version>\SwiftDemoUIPro.exe
-launcher\package\SwiftDemoUIPro-v<version>-win64.zip
+launcher\package\CS2DemoVoice-v<version>\CS2DemoVoice.exe
+launcher\package\CS2DemoVoice-v<version>-win64.zip
 ```
 
 Packaging uses `windeployqt` and must include the launcher EXE, Qt Core/Gui/Network/Widgets DLLs, the Windows TLS backend, `platforms/qwindows.dll`, VPK, translations, README files, project license, third-party notices, Qt LGPL text, Noto Sans SC OFL text, and miniz MIT text. Launch the EXE from the unpacked package directory for end-to-end testing.
@@ -223,7 +223,7 @@ GitHub CI uses Windows Server 2022, Node 22, Qt 6.8.x/MSVC 2022, and `-SkipVpkCh
 - After configuring CMake, update translation sources with:
 
   ```powershell
-  cmake --build .\launcher\build --target SwiftDemoUIPro_lupdate --config Release
+  cmake --build .\launcher\build --target CS2DemoVoice_lupdate --config Release
   ```
 
 - Translate every new `type="unfinished"` entry in `launcher/translations/swift_demoui_pro_zh_CN.ts`.
@@ -248,8 +248,8 @@ The working tree must be clean because the source archive is generated from `HEA
 This runs both test suites, rebuilds the VPK, builds/tests/packages the launcher, creates a Git source archive, and writes:
 
 ```text
-release\v<version>\SwiftDemoUIPro-v<version>-win64.zip
-release\v<version>\SwiftDemoUIPro-v<version>-source.zip
+release\v<version>\CS2DemoVoice-v<version>-win64.zip
+release\v<version>\CS2DemoVoice-v<version>-source.zip
 release\v<version>\swift_demo_menu_override-v<version>.vpk
 release\v<version>\update-manifest.json
 release\v<version>\SHA256SUMS.txt

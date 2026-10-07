@@ -1,30 +1,30 @@
 ---
-title: Swift DemoUI Pro
+title: CS2DemoVoice
 type: landing
 
 sections:
   - block: hero
     id: top
     content:
-      eyebrow: SWIFT DEMOUI PRO / WINDOWS X64
+      eyebrow: CS2DEMOVOICE / WINDOWS X64
       title: 让 CS2 Demo 回放重新有声音。
       text: >-
         保留原生 DemoUI，只在旁边增加语音与导航控制：选择收听对象、辨认当前说话者、
         切换 POV，并跳到指定回合。
       primary_action:
         text: 下载最新版
-        url: https://github.com/nicedayzhu/SwiftDemoUIPro/releases/latest
+        url: https://github.com/EmoXW/CS2-DemoVoice/releases/latest
         icon: arrow-down-tray
         style: solid
       secondary_action:
         text: 查看 GitHub
-        url: https://github.com/nicedayzhu/SwiftDemoUIPro
+        url: https://github.com/EmoXW/CS2-DemoVoice
         icon: brands/github
         style: text
       media:
         type: image
         src: demo-voice-hero.png
-        alt: Swift DemoUI Pro 在 CS2 Demo 回放中显示语音面板
+        alt: CS2DemoVoice 在 CS2 Demo 回放中显示语音面板
     design:
       layout: split-left
       no_padding: true
@@ -50,7 +50,7 @@ sections:
           image: voice-panel-zh.webp
           button:
             text: 面板使用说明
-            url: https://github.com/nicedayzhu/SwiftDemoUIPro#using-the-in-game-panel
+            url: https://github.com/EmoXW/CS2-DemoVoice#using-the-in-game-panel
         - title: 选择文件，启动回放
           text: >-
             这里展示的是实际 Windows 启动器。选择 `.dem`、`.zip` 或 `.dem.zst` 后，
@@ -63,7 +63,7 @@ sections:
           image: launcher-zh.png
           button:
             text: 查看完整使用流程
-            url: https://github.com/nicedayzhu/SwiftDemoUIPro#quick-start
+            url: https://github.com/EmoXW/CS2-DemoVoice#quick-start
     design:
       css_class: "swift-showcase"
 

@@ -24,7 +24,7 @@
 namespace
 {
 constexpr qint64 kMaximumMenuDownloadSize = 128LL * 1024LL * 1024LL;
-const auto kLatestReleaseUrl = "https://api.github.com/repos/nicedayzhu/SwiftDemoUIPro/releases/latest";
+const auto kLatestReleaseUrl = "https://api.github.com/repos/EmoXW/CS2-DemoVoice/releases/latest";
 const auto kManifestName = "update-manifest.json";
 
 QNetworkRequest githubRequest(const QUrl &url)
@@ -36,7 +36,7 @@ QNetworkRequest githubRequest(const QUrl &url)
     request.setRawHeader("X-GitHub-Api-Version", "2026-03-10");
     request.setRawHeader(
         "User-Agent",
-        QStringLiteral("SwiftDemoUIPro/%1").arg(QCoreApplication::applicationVersion()).toUtf8());
+        QStringLiteral("CS2DemoVoice/%1").arg(QCoreApplication::applicationVersion()).toUtf8());
     request.setTransferTimeout(15000);
     request.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::AlwaysNetwork);
     request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
@@ -282,7 +282,7 @@ UpdateInfo UpdateService::parseLatestRelease(const QByteArray &releaseJson, cons
         info.menu = componentFromJson(manifest.value(QStringLiteral("menu")).toObject());
     } else {
         const QRegularExpression launcherPattern(
-            QStringLiteral(R"(^SwiftDemoUIPro-v([0-9]+\.[0-9]+\.[0-9]+)-win64\.zip$)"),
+            QStringLiteral(R"(^CS2DemoVoice-v([0-9]+\.[0-9]+\.[0-9]+)-win64\.zip$)"),
             QRegularExpression::CaseInsensitiveOption);
         const QRegularExpression menuPattern(
             QStringLiteral(R"(^swift_demo_menu_override-v([0-9]+\.[0-9]+\.[0-9]+)\.vpk$)"),

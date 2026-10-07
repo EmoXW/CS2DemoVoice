@@ -1,12 +1,12 @@
 # Third-Party Notices
 
-Unless a file or directory says otherwise, original Swift DemoUI Pro source code is licensed under the repository's [MIT License](LICENSE). That license does not replace or supersede the terms of third-party components or materials.
+Unless a file or directory says otherwise, original CS2DemoVoice source code is licensed under the repository's [MIT License](LICENSE). That license does not replace or supersede the terms of third-party components or materials.
 
 ## Valve and Counter-Strike 2
 
 This project interoperates with Counter-Strike 2 and overrides the native `huddemocontroller` Panorama layout. The compatible layout structure and any referenced Counter-Strike 2 resources, names, icons, trademarks, and other game material remain the property of Valve Corporation and their respective owners. They are not licensed under this project's MIT License.
 
-Counter-Strike, Counter-Strike 2, CS2, Steam, and the associated logos and trademarks are property of Valve Corporation. Swift DemoUI Pro is an independent, unofficial project and is not affiliated with or endorsed by Valve.
+Counter-Strike, Counter-Strike 2, CS2, Steam, and the associated logos and trademarks are property of Valve Corporation. CS2DemoVoice is an independent, unofficial project and is not affiliated with or endorsed by Valve.
 
 Users and distributors are responsible for ensuring that their use and redistribution of game-derived material complies with Valve's applicable terms.
 
@@ -29,7 +29,7 @@ The launcher statically compiles the vendored miniz 3.1.2 source to enumerate ZI
 
 ## source2-demo 0.5.8
 
-The packaged `swift-demo-voice-indexer.exe` statically links Artem Rupasov's `source2-demo` parser to extract CS2 `SvcVoiceData` speaker/tick information without rewriting the Demo. The project is dual-licensed under MIT or Apache-2.0; Swift DemoUI Pro uses it under the MIT option and packages that license as `licenses/source2-demo-MIT.txt`.
+The packaged `swift-demo-voice-indexer.exe` statically links Artem Rupasov's `source2-demo` parser to extract CS2 `SvcVoiceData` speaker/tick information without rewriting the Demo. The project is dual-licensed under MIT or Apache-2.0; CS2DemoVoice uses it under the MIT option and packages that license as `licenses/source2-demo-MIT.txt`.
 
 - <https://github.com/Rupas1k/source2-demo>
 

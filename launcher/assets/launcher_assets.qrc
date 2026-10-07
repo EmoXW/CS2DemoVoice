@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/images">
-        <file alias="author_avatar.bmp">author_avatar.bmp</file>
+        <file alias="sponsor_icon.ico">sponsor_icon.ico</file>
         <file alias="afdian_icon.png">afdian_icon.png</file>
         <file alias="kofi_icon.png">kofi_icon.png</file>
     </qresource>

@@ -317,8 +317,8 @@
     </message>
     <message>
         <location line="-14"/>
-        <source>The bundled Zstandard Demo decoder was not found. Reinstall Swift DemoUI Pro.</source>
-        <translation>未找到内置的 Zstandard Demo 解码器。请重新安装 Swift DemoUI Pro。</translation>
+        <source>The bundled Zstandard Demo decoder was not found. Reinstall CS2DemoVoice.</source>
+        <translation>未找到内置的 Zstandard Demo 解码器。请重新安装 CS2DemoVoice。</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -332,8 +332,8 @@
     </message>
     <message>
         <location line="+38"/>
-        <source>The Demo voice indexer was not found. Rebuild or reinstall Swift DemoUI Pro.</source>
-        <translation>找不到 Demo 语音索引器。请重新构建或重新安装 Swift DemoUI Pro。</translation>
+        <source>The Demo voice indexer was not found. Rebuild or reinstall CS2DemoVoice.</source>
+        <translation>找不到 Demo 语音索引器。请重新构建或重新安装 CS2DemoVoice。</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -467,8 +467,8 @@
     </message>
     <message>
         <location line="+14"/>
-        <source>Manage the CS2 path and Swift DemoUI component</source>
-        <translation>管理 CS2 路径和 Swift DemoUI 组件</translation>
+        <source>Manage the CS2 path and CS2DemoVoice component</source>
+        <translation>管理 CS2 路径和 CS2DemoVoice 组件</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -547,6 +547,10 @@
         <translation>支持项目</translation>
     </message>
     <message>
+        <source>Sponsor</source>
+        <translation>赞助</translation>
+    </message>
+    <message>
         <location line="+40"/>
         <source>Afdian</source>
         <translation>爱发电</translation>
@@ -600,8 +604,8 @@
     </message>
     <message>
         <location line="-1546"/>
-        <source>Swift DemoUI Pro · %1</source>
-        <translation>Swift DemoUI Pro · %1</translation>
+        <source>CS2DemoVoice · %1</source>
+        <translation>CS2DemoVoice · %1</translation>
     </message>
     <message>
         <location line="+119"/>
