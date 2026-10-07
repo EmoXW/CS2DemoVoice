@@ -1,4 +1,4 @@
-module github.com/EmoXW/CS2-DemoVoice/site
+module github.com/EmoXW/CS2DemoVoice/site
 
 go 1.24
 

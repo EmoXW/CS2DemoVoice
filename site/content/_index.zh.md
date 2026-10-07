@@ -13,12 +13,12 @@ sections:
         切换 POV，并跳到指定回合。
       primary_action:
         text: 下载最新版
-        url: https://github.com/EmoXW/CS2-DemoVoice/releases/latest
+        url: https://github.com/EmoXW/CS2DemoVoice/releases/latest
         icon: arrow-down-tray
         style: solid
       secondary_action:
         text: 查看 GitHub
-        url: https://github.com/EmoXW/CS2-DemoVoice
+        url: https://github.com/EmoXW/CS2DemoVoice
         icon: brands/github
         style: text
       media:
@@ -50,7 +50,7 @@ sections:
           image: voice-panel-zh.webp
           button:
             text: 面板使用说明
-            url: https://github.com/EmoXW/CS2-DemoVoice#using-the-in-game-panel
+            url: https://github.com/EmoXW/CS2DemoVoice#using-the-in-game-panel
         - title: 选择文件，启动回放
           text: >-
             这里展示的是实际 Windows 启动器。选择 `.dem`、`.zip` 或 `.dem.zst` 后，
@@ -63,7 +63,7 @@ sections:
           image: launcher-zh.png
           button:
             text: 查看完整使用流程
-            url: https://github.com/EmoXW/CS2-DemoVoice#quick-start
+            url: https://github.com/EmoXW/CS2DemoVoice#quick-start
     design:
       css_class: "swift-showcase"
 

@@ -13,12 +13,12 @@ sections:
         current speaker, switch POV, and move to a recorded round start.
       primary_action:
         text: Download latest
-        url: https://github.com/EmoXW/CS2-DemoVoice/releases/latest
+        url: https://github.com/EmoXW/CS2DemoVoice/releases/latest
         icon: arrow-down-tray
         style: solid
       secondary_action:
         text: View on GitHub
-        url: https://github.com/EmoXW/CS2-DemoVoice
+        url: https://github.com/EmoXW/CS2DemoVoice
         icon: brands/github
         style: text
       media:
@@ -50,7 +50,7 @@ sections:
           image: voice-panel-en.webp
           button:
             text: In-game panel guide
-            url: https://github.com/EmoXW/CS2-DemoVoice#using-the-in-game-panel
+            url: https://github.com/EmoXW/CS2DemoVoice#using-the-in-game-panel
         - title: Choose a file, start playback
           text: >-
             This is the Windows launcher included with the release. Choose a `.dem`, `.zip`, or `.dem.zst`; it validates
@@ -63,7 +63,7 @@ sections:
           image: launcher-en.png
           button:
             text: Full usage guide
-            url: https://github.com/EmoXW/CS2-DemoVoice#quick-start
+            url: https://github.com/EmoXW/CS2DemoVoice#quick-start
     design:
       css_class: "swift-showcase"
 

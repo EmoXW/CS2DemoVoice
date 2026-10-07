@@ -1,7 +1,7 @@
 # CS2DemoVoice promotional website
 
 This directory contains the Hugo website published to GitHub Pages at
-<https://github.com/EmoXW/CS2-DemoVoice>.
+<https://github.com/EmoXW/CS2DemoVoice>.
 
 The site uses the MIT-licensed [Hugo Blox](https://github.com/HugoBlox/kit)
 SaaS landing-page template. Page copy and section order live in

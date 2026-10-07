@@ -393,9 +393,9 @@ LauncherWindow::LauncherWindow(QWidget *parent)
             UpdateInfo preview;
             preview.valid = true;
             preview.launcher.version = QStringLiteral("0.2.0");
-            preview.launcher.url = QStringLiteral("https://github.com/EmoXW/CS2-DemoVoice/releases/latest");
+            preview.launcher.url = QStringLiteral("https://github.com/EmoXW/CS2DemoVoice/releases/latest");
             preview.menu.version = QStringLiteral("0.1.1");
-            preview.menu.url = QStringLiteral("https://github.com/EmoXW/CS2-DemoVoice/releases/latest");
+            preview.menu.url = QStringLiteral("https://github.com/EmoXW/CS2DemoVoice/releases/latest");
             handleUpdateCheck(preview);
         });
     } else if (!qApp->property("disableAutoUpdateCheck").toBool()) {
@@ -971,7 +971,7 @@ void LauncherWindow::buildInterface()
     linkCards->addWidget(makeLinkButton(
         QStringLiteral("GitHub"),
         tr("Source code and issues"),
-        QStringLiteral("https://github.com/EmoXW/CS2-DemoVoice"),
+        QStringLiteral("https://github.com/EmoXW/CS2DemoVoice"),
         Glyph::Code,
         QStringLiteral("github"),
         QColor(QStringLiteral("#31363d"))), 1);

@@ -9,7 +9,7 @@ hugoblox:
     cta:
       enable: false
       text: Download latest
-      url: https://github.com/EmoXW/CS2-DemoVoice/releases/latest
+      url: https://github.com/EmoXW/CS2DemoVoice/releases/latest
 
   footer:
     text: "Independent open-source project. Not affiliated with or endorsed by Valve or FACEIT."

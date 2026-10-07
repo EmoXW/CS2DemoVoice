@@ -12,7 +12,7 @@ hugoblox:
     social:
       links:
         - icon: brands/github
-          url: https://github.com/EmoXW/CS2-DemoVoice
+          url: https://github.com/EmoXW/CS2DemoVoice
 
   theme:
     mode: dark
@@ -53,7 +53,7 @@ hugoblox:
     cta:
       enable: false
       text: 下载最新版
-      url: https://github.com/EmoXW/CS2-DemoVoice/releases/latest
+      url: https://github.com/EmoXW/CS2DemoVoice/releases/latest
 
   footer:
     style: minimal
@@ -96,7 +96,7 @@ hugoblox:
 
   repository:
     enable: true
-    url: https://github.com/EmoXW/CS2-DemoVoice
+    url: https://github.com/EmoXW/CS2DemoVoice
     branch: main
     content_dir: site/content
 

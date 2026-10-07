@@ -192,7 +192,7 @@ Initial repository setup:
 
 ```powershell
 gh auth login
-gh repo create EmoXW/CS2-DemoVoice --public --source . --remote origin --push
+gh repo create EmoXW/CS2DemoVoice --public --source . --remote origin --push
 ```
 
 To publish a complete release:

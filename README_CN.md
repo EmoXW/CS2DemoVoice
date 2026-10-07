@@ -2,7 +2,7 @@
 
 [English](README.md) | [简体中文](README_CN.md)
 
-[GitHub 仓库](https://github.com/EmoXW/CS2-DemoVoice) · [下载最新版本](https://github.com/EmoXW/CS2-DemoVoice/releases/latest)
+[GitHub 仓库](https://github.com/EmoXW/CS2DemoVoice) · [下载最新版本](https://github.com/EmoXW/CS2DemoVoice/releases/latest)
 
 [![许可证：MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![平台：Windows](https://img.shields.io/badge/Platform-Windows-0078D6.svg)](#快速开始)

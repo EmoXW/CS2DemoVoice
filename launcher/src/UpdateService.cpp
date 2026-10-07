@@ -24,7 +24,7 @@
 namespace
 {
 constexpr qint64 kMaximumMenuDownloadSize = 128LL * 1024LL * 1024LL;
-const auto kLatestReleaseUrl = "https://api.github.com/repos/EmoXW/CS2-DemoVoice/releases/latest";
+const auto kLatestReleaseUrl = "https://api.github.com/repos/EmoXW/CS2DemoVoice/releases/latest";
 const auto kManifestName = "update-manifest.json";
 
 QNetworkRequest githubRequest(const QUrl &url)

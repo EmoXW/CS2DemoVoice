@@ -14,7 +14,7 @@ $projectRoot = $PSScriptRoot
 $versionPath = Join-Path $projectRoot "VERSION"
 $menuVersionPath = Join-Path $projectRoot "MENU_VERSION"
 $releaseRoot = Join-Path $projectRoot "release"
-$githubRepository = "EmoXW/CS2-DemoVoice"
+$githubRepository = "EmoXW/CS2DemoVoice"
 
 function Invoke-Native {
     param(
